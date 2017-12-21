@@ -19,6 +19,11 @@
     [[GQLogManager instance] showVCWithName:NSStringFromClass([self class])];
 }
 
+- (void)viewDidDisappear:(BOOL)animated{
+    [[GQLogManager instance] dismissVCWithName:NSStringFromClass([self class])];
+    [super viewDidDisappear:animated];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     _barImageView = self.navigationController.navigationBar.subviews.firstObject;
@@ -107,6 +112,18 @@
 
 -(void)dealloc{
     chackMemory;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
+    
+    
+}
+-( void )scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    
 }
 
 /*

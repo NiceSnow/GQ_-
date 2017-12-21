@@ -10,7 +10,7 @@
 
 
 
-@interface GQLogManager : NSObject<UITextFieldDelegate>
+@interface GQLogManager : NSObject
 //登陆后需要设置此id
 @property(nonatomic,copy) NSString* userID;
 @property(nonatomic,copy) NSString* userName;
@@ -19,8 +19,8 @@
 @property(nonatomic,copy) NSString* logServiceUrl;
 @property(nonatomic,copy) NSString* fileType;
 
-@property(nonatomic,assign) CGFloat pointX;
-@property(nonatomic,assign) CGFloat pointY;
+@property(nonatomic,assign) float pointX;
+@property(nonatomic,assign) float pointY;
 @property(nonatomic,copy) NSString* scrollName;
 
 @property(nonatomic,strong) NSMutableDictionary* userAction;
@@ -34,6 +34,8 @@
 
 @property(nonatomic,copy) NSString* currentZipPath;
 @property(nonatomic,copy) NSString* currentLogPath;
+
+@property(nonatomic,assign) BOOL immediately;
 
 + (GQLogManager*)instance;
 
@@ -63,6 +65,13 @@
  @param name VC 的名字
  */
 - (void)showVCWithName:(NSString*)name;
+
+/**
+ 记录取消的viewcontroller
+ 
+ @param name VC 的名字
+ */
+- (void)dismissVCWithName:(NSString*)name;
 
 
 /**
@@ -97,7 +106,7 @@
  @param x pointX
  @param y pointY
  */
-- (void)scrollViewStartDraggingWithName:(NSString*)name :(CGFloat)x :(CGFloat)y;
+- (void)scrollViewStartDraggingWithName:(NSString*)name :(float)x :(float)y;
 
 
 /**
@@ -106,7 +115,7 @@
  @param x pointX
  @param y pointY
  */
-- (void)scrollViewEndDragging:(CGFloat)x :(CGFloat)y;
+- (void)scrollViewEndDragging:(float)x :(float)y;
 
 
 /**

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UITableView (LogSupport)
-@property (nonatomic, assign) CGFloat startY;
+
 @end

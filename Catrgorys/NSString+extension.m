@@ -7,7 +7,6 @@
 //
 
 #import "NSString+extension.h"
-#import "NSData+extension.h"
 #import <ifaddrs.h>
 #import <arpa/inet.h>
 #import <CommonCrypto/CommonDigest.h>

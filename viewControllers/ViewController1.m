@@ -19,6 +19,10 @@
     webVC.urlString = @"https://www.baidu.com";
     [self.navigationController pushViewController:webVC animated:YES];
 }
+- (IBAction)crash:(id)sender {
+    NSArray* arr = @[@"123"];
+    NSLog(@"%@",arr[5]);
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

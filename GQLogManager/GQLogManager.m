@@ -10,9 +10,9 @@
 #import "GQFileManager.h"
 #import "GQCrashHandler.h"
 #import "NSString+extension.h"
-#import "LogRequest.h"
-#import "NSString+extension.h"
 #import "ZipArchive.h"
+
+static GQLogManager *instance = nil;
 
 @interface GQLogManager ()
 #if TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
@@ -23,9 +23,16 @@
 
 @implementation GQLogManager
 
+
+-(void)setImmediately:(BOOL)immediately{
+    _immediately = immediately;
+    if (!_immediately) {
+        instance = nil;
+    }
+}
+
 + (GQLogManager*)instance
 {
-    static GQLogManager *instance = nil;
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
         instance = [[self alloc] init];
@@ -48,6 +55,7 @@
         _userName = @"tourists";
         _phoneNumber = @"";
         _deviceType = @"iOS";
+        _immediately = YES;
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(clearMemory)
@@ -78,18 +86,42 @@
     [_timeline addObject:dic];
     [self WriteToFile];
 }
+
+-(void)setUserID:(NSString *)userID{
+    if (userID) {
+        _userID = userID;
+        [_userAction setObject:_userID forKey:@"userID"];
+    }
+}
+-(void)setUserName:(NSString *)userName{
+    if (userName) {
+        _userName = userName;
+        [_userAction setObject:_userName forKey:@"userName"];
+    }
+}
+
+-(void)setPhoneNumber:(NSString *)phoneNumber{
+    if (phoneNumber) {
+        _phoneNumber = phoneNumber;
+        [_userAction setObject:_phoneNumber forKey:@"phoneNumber"];
+    }
+}
+
+-(void)setDeviceType:(NSString *)deviceType{
+    if (deviceType) {
+        _deviceType = deviceType;
+        [_userAction setObject:_deviceType forKey:@"deviceType"];
+    }
+}
 /**
  1.检查时候有之前没被上传的数据 如果有上传 成功后删除文件
  2.创建userAction 并且赋值头信息
  */
-- (void)LogStartWithURL:(NSString*)url FileType:(NSString*)type keyInformation:(NSDictionary*)Information;{
+- (void)LogStartWithURL:(NSString*)url FileType:(NSString*)type keyInformation:(NSDictionary*)Information{
 //    基础信息设定
     _logServiceUrl = url;
     _fileType = type;
-    [_userAction setObject:_userID forKey:@"userID"];
-    [_userAction setObject:_userName forKey:@"userName"];
-    [_userAction setObject:_phoneNumber forKey:@"phoneNumber"];
-    [_userAction setObject:_deviceType forKey:@"deviceType"];
+    
     [_userAction setObject:[NSString stringWithCurrentTime] forKey:@"Time"];
     [[Information allKeys] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [_userAction setObject:Information[obj] forKey:obj];
@@ -97,10 +129,23 @@
 }
 
 - (void)LogEnd;{
-    _userID = @"99999999";
-    _userName = @"tourists";
-    _phoneNumber = @"";
-    _deviceType = @"iOS";
+    NSMutableDictionary* dic = [NSMutableDictionary new];
+    [dic setObject:@"LoginOut" forKey:@"Type"];
+    [dic setObject:[NSString stringWithCurrentTime] forKey:@"Time"];
+    [_timeline addObject:dic];
+    [self WriteToFile];
+    [self zipFile:_currentLogPath];
+    [self sendCurrentZipSynchronous:NO];
+    [_userAction removeAllObjects];
+    [_timeline removeAllObjects];
+    [_userAction setObject:_timeline forKey:@"timeline"];
+    
+    [_textFieldAction removeAllObjects];
+    [_textFieldActionArray removeAllObjects];
+    self.userID = @"99999999";
+    self.userName = @"tourists";
+    self.phoneNumber = @"";
+    self.deviceType = @"iOS";
 }
 
 - (void)BecomeActive;{
@@ -135,6 +180,14 @@
     [_timeline addObject:dic];
 }
 
+- (void)dismissVCWithName:(NSString*)name;{
+    NSMutableDictionary* dic = [NSMutableDictionary new];
+    [dic setObject:@"ExitActivity" forKey:@"Type"];
+    [dic setObject:[NSString stringWithCurrentTime] forKey:@"Time"];
+    [dic setObject:name forKey:@"name"];
+    [_timeline addObject:dic];
+}
+
 - (void)ButtonPressWithName:(NSString*)name;{
     NSMutableDictionary* dic = [NSMutableDictionary new];
     [dic setObject:@"Click" forKey:@"Type"];
@@ -148,16 +201,18 @@
     [_timeline addObject:@{@"notice":message}];
 }
 
-- (void)scrollViewStartDraggingWithName:(NSString*)name :(CGFloat)x :(CGFloat)y{
+- (void)scrollViewStartDraggingWithName:(NSString*)name :(float)x :(float)y{
     _pointX = x;
     _pointY = y;
     _scrollName = name;
 }
 
-- (void)scrollViewEndDragging:(CGFloat)x :(CGFloat)y{
+- (void)scrollViewEndDragging:(float)x :(float)y{
     NSMutableDictionary* dic = [NSMutableDictionary new];
     [dic setObject:@"ScrollView" forKey:@"Type"];
-    [dic setObject:_scrollName forKey:@"name"];
+    if (_scrollName) {
+        [dic setObject:_scrollName forKey:@"name"];
+    }
     [dic setObject:[NSString stringWithCurrentTime] forKey:@"Time"];
     if (_pointX > x) {
         [dic setObject:@"right" forKey:@"direction"];

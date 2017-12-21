@@ -78,6 +78,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7WB-GP-5Uf">
+                                <rect key="frame" x="160" y="481" width="55" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="bengkui"/>
+                                <connections>
+                                    <action selector="crash:" destination="WK5-oO-ZeK" eventType="touchUpInside" id="WBv-hR-xBc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Z92-kO-ipv"/>
@@ -461,29 +469,10 @@
                     <view key="view" contentMode="scaleToFill" id="3Xb-rj-YWb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VbM-Ca-SMg">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="kfz-g3-11i" id="dow-QR-nqV"/>
-                                    <outlet property="delegate" destination="kfz-g3-11i" id="H62-7a-xNK"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="VbM-Ca-SMg" firstAttribute="leading" secondItem="tvJ-Pu-3NQ" secondAttribute="leading" id="0O8-6t-5gR"/>
-                            <constraint firstItem="VbM-Ca-SMg" firstAttribute="top" secondItem="tvJ-Pu-3NQ" secondAttribute="top" id="bPI-G0-Ylf"/>
-                            <constraint firstItem="tvJ-Pu-3NQ" firstAttribute="bottom" secondItem="VbM-Ca-SMg" secondAttribute="bottom" id="htb-OC-H6e"/>
-                            <constraint firstItem="tvJ-Pu-3NQ" firstAttribute="trailing" secondItem="VbM-Ca-SMg" secondAttribute="trailing" id="pSd-3d-Pe2"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="tvJ-Pu-3NQ"/>
                     </view>
                     <navigationItem key="navigationItem" id="JzM-ZS-HCa"/>
-                    <connections>
-                        <outlet property="tableView" destination="VbM-Ca-SMg" id="ggy-5n-0MX"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e9H-9d-qmz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -10,8 +10,7 @@
 #import "TableViewCell.h"
 
 @interface ViewController4 ()<UITableViewDelegate,UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property(nonatomic,strong) UITableView* tableView;
 @end
 
 @implementation ViewController4
@@ -35,11 +34,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-}
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
@@ -55,8 +50,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view addSubview:self.tableView];
 
     // Do any additional setup after loading the view from its nib.
+}
+
+-(UITableView *)tableView{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight) style:(UITableViewStylePlain)];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+    }
+    return _tableView;
 }
 
 - (void)didReceiveMemoryWarning {

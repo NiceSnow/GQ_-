@@ -85,6 +85,10 @@
     return _webView;
 }
 
+-(void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
