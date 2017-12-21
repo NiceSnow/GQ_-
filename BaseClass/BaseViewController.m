@@ -1,0 +1,122 @@
+//
+//  BaseViewController.m
+//  GQ_****
+//
+//  Created by Madodg on 2017/11/40.
+//  Copyright © 2017年 Madodg. All rights reserved.
+//
+
+#import "BaseViewController.h"
+
+@interface BaseViewController ()
+
+@end
+
+@implementation BaseViewController
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[GQLogManager instance] showVCWithName:NSStringFromClass([self class])];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    _barImageView = self.navigationController.navigationBar.subviews.firstObject;
+    // Do any additional setup after loading the view.
+}
+- (void)setleftBarItem:(NSString*)imageStr;{
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [button setImage:[UIImage imageNamed:imageStr] forState:UIControlStateNormal];
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+}
+
+- (void)back{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)setleftBarItems:(NSString*)firstImage :(NSString*)secondImage;{
+    UIButton *firstBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [firstBtn addTarget:self action:@selector(leftPress1:) forControlEvents:UIControlEventTouchUpInside];
+    [firstBtn setImage:[UIImage imageNamed:firstImage] forState:UIControlStateNormal];
+    
+    [firstBtn sizeToFit];
+    UIBarButtonItem *firstBtnItem = [[UIBarButtonItem alloc] initWithCustomView:firstBtn];
+    
+    UIButton *secondBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [secondBtn addTarget:self action:@selector(leftPress2:) forControlEvents:UIControlEventTouchUpInside];
+    [secondBtn setImage:[UIImage imageNamed:secondImage] forState:UIControlStateNormal];
+    
+    [secondBtn sizeToFit];
+    UIBarButtonItem *secondBtnItem = [[UIBarButtonItem alloc] initWithCustomView:secondBtn];
+    
+    self.navigationItem.rightBarButtonItems  = @[firstBtnItem,secondBtnItem];
+}
+
+-(void)leftPress1:(UIButton*)btn{
+    
+}
+
+-(void)leftPress2:(UIButton*)btn{
+    
+}
+
+- (void)setrightBarItem:(NSString*)imageStr;{
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [button setImage:[UIImage imageNamed:imageStr] forState:UIControlStateNormal];
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [button addTarget:self action:@selector(rightPress:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+}
+
+-(void)rightPress:(UIButton*)btn{
+    
+}
+
+- (void)setrightBarItems:(NSString*)firstImage :(NSString*)secondImage;{
+    UIButton *firstBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [firstBtn addTarget:self action:@selector(rightPress1:) forControlEvents:UIControlEventTouchUpInside];
+    [firstBtn setImage:[UIImage imageNamed:firstImage] forState:UIControlStateNormal];
+    
+    [firstBtn sizeToFit];
+    UIBarButtonItem *firstBtnItem = [[UIBarButtonItem alloc] initWithCustomView:firstBtn];
+    
+    UIButton *secondBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [secondBtn addTarget:self action:@selector(rightPress2:) forControlEvents:UIControlEventTouchUpInside];
+    [secondBtn setImage:[UIImage imageNamed:secondImage] forState:UIControlStateNormal];
+    
+    [secondBtn sizeToFit];
+    UIBarButtonItem *secondBtnItem = [[UIBarButtonItem alloc] initWithCustomView:secondBtn];
+    
+    self.navigationItem.rightBarButtonItems  = @[firstBtnItem,secondBtnItem];
+}
+
+-(void)rightPress1:(UIButton*)btn{
+    
+}
+
+-(void)rightPress2:(UIButton*)btn{
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)dealloc{
+    chackMemory;
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

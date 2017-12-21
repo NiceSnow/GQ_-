@@ -1,0 +1,41 @@
+//
+//  PrefixHeader.pch
+//  GQ_****
+//
+//  Created by Madodg on 2017/11/30.
+//  Copyright © 2017年 Madodg. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "AFNetworking.h"
+#import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
+#import "MacroDefinition.h"
+#import "interface.h"
+#import "ColorDefinition.h"
+#include "FontDefinition.h"
+#import "Masonry.h"
+#import "MBProgressHUD_NHExtend.h"
+#import "MBProgressHUD+NHAdd.h"
+#import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
+#import "UIImage+GIF.h"
+#import "Tools.h"
+#import "YYKit.h"
+#import "GQLogManager.h"
+#endif
+
+#endif /* PrefixHeader_pch */
