@@ -12,6 +12,8 @@
 @property(nonatomic,strong) UITableView* tableView;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UILabel *jinduLabel;
+
+@property(nonatomic,strong) UIScrollView* HeaderScrollView;
 @end
 
 @implementation ViewController3
@@ -42,6 +44,19 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
+    CGFloat contentOffsetY = scrollView.contentOffset.y;
+    NSLog(@"%f",contentOffsetY);
+}
+-( void )scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    CGFloat contentOffsetY = scrollView.contentOffset.y;
+    NSLog(@"%f",contentOffsetY);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
@@ -58,8 +73,19 @@
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight) style:(UITableViewStylePlain)];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.tableHeaderView = self.HeaderScrollView;
     }
     return _tableView;
+}
+
+-(UIScrollView *)HeaderScrollView{
+    if (!_HeaderScrollView) {
+        _HeaderScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 80)];
+        _HeaderScrollView.backgroundColor = [UIColor redColor];
+        _HeaderScrollView.delegate = self;
+        _HeaderScrollView.contentSize = CGSizeMake(screenWidth*2, 0);
+    }
+    return _HeaderScrollView;
 }
 
 /*

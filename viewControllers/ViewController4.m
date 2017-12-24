@@ -11,6 +11,7 @@
 
 @interface ViewController4 ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) UITableView* tableView;
+@property(nonatomic,strong) UITableView* tableView2;
 @end
 
 @implementation ViewController4
@@ -51,17 +52,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.tableView2];
 
     // Do any additional setup after loading the view from its nib.
 }
 
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight) style:(UITableViewStylePlain)];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, screenWidth/2, screenHeight) style:(UITableViewStylePlain)];
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }
     return _tableView;
+}
+
+-(UITableView *)tableView2{
+    if (!_tableView2) {
+        _tableView2 = [[UITableView alloc]initWithFrame:CGRectMake(screenWidth/2, 0, screenWidth/2, screenHeight) style:(UITableViewStylePlain)];
+        _tableView2.delegate = self;
+        _tableView2.dataSource = self;
+    }
+    return _tableView2;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -14,6 +14,18 @@
 
 @implementation BaseViewController
 
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//}
+//
+//-(void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
+//    
+//    
+//}
+//-( void )scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+//    
+//}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [[GQLogManager instance] showVCWithName:NSStringFromClass([self class])];
@@ -114,17 +126,7 @@
     chackMemory;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
-}
-
--(void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
-    
-    
-}
--( void )scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    
-}
 
 /*
 #pragma mark - Navigation

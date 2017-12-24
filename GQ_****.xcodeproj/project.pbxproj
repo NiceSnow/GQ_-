@@ -36,6 +36,7 @@
 		6012689A1FD0F95600B70F60 /* HUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 601268981FD0F95600B70F60 /* HUDView.m */; };
 		601268A01FD14E1B00B70F60 /* UIFont+extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012689F1FD14E1B00B70F60 /* UIFont+extension.m */; };
 		60147CD41FEBBDA20009FC9C /* GQ_LogBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60147CD31FEBBDA20009FC9C /* GQ_LogBaseTableView.m */; };
+		60147D9D1FEF73740009FC9C /* UIScrollView+LogSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 60147D9C1FEF73740009FC9C /* UIScrollView+LogSupport.m */; };
 		60378A981FD67420004F1D93 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 60378A971FD67420004F1D93 /* Request.m */; };
 		60378A9B1FD6743B004F1D93 /* myRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60378A9A1FD6743B004F1D93 /* myRequest.m */; };
 		60378AA21FD685CD004F1D93 /* errorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 60378AA11FD685CD004F1D93 /* errorModel.m */; };
@@ -148,6 +149,8 @@
 		6012689F1FD14E1B00B70F60 /* UIFont+extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+extension.m"; sourceTree = "<group>"; };
 		60147CD21FEBBDA20009FC9C /* GQ_LogBaseTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQ_LogBaseTableView.h; sourceTree = "<group>"; };
 		60147CD31FEBBDA20009FC9C /* GQ_LogBaseTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQ_LogBaseTableView.m; sourceTree = "<group>"; };
+		60147D9B1FEF73740009FC9C /* UIScrollView+LogSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+LogSupport.h"; sourceTree = "<group>"; };
+		60147D9C1FEF73740009FC9C /* UIScrollView+LogSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+LogSupport.m"; sourceTree = "<group>"; };
 		60378A961FD67420004F1D93 /* Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
 		60378A971FD67420004F1D93 /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		60378A991FD6743B004F1D93 /* myRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = myRequest.h; sourceTree = "<group>"; };
@@ -438,6 +441,8 @@
 				609079541FE36C1F0043B561 /* UITableView+LogSupport.m */,
 				609079591FE37CDF0043B561 /* UICollectionView+LogSupport.h */,
 				6090795A1FE37CDF0043B561 /* UICollectionView+LogSupport.m */,
+				60147D9B1FEF73740009FC9C /* UIScrollView+LogSupport.h */,
+				60147D9C1FEF73740009FC9C /* UIScrollView+LogSupport.m */,
 			);
 			path = LogSupport;
 			sourceTree = "<group>";
@@ -745,6 +750,7 @@
 				609079511FE369710043B561 /* TableViewCell.m in Sources */,
 				609079321FDE2A450043B561 /* baseModel.m in Sources */,
 				601268581FCFE15B00B70F60 /* NSDate+extension.m in Sources */,
+				60147D9D1FEF73740009FC9C /* UIScrollView+LogSupport.m in Sources */,
 				6012686B1FD018C000B70F60 /* MBProgressHUD+NHAdd.m in Sources */,
 				609079491FE261FA0043B561 /* LogRequest.m in Sources */,
 				601268721FD01C7400B70F60 /* ViewController1.m in Sources */,
