@@ -85,9 +85,9 @@
     return _webView;
 }
 
--(void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
-    
-}
+//-(void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
+//    
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

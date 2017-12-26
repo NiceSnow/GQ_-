@@ -34,20 +34,13 @@
     return cell;
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 }
-
--(void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
-    CGFloat contentOffsetY = scrollView.contentOffset.y;
-    NSLog(@"%f",contentOffsetY);
-}
--( void )scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    CGFloat contentOffsetY = scrollView.contentOffset.y;
-    NSLog(@"%f",contentOffsetY);
-}
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];

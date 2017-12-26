@@ -49,19 +49,12 @@
     -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath { return CGSizeMake(80, 80);
 }
 
+
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%@",indexPath);
+    
 }
 
--(void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
-    CGFloat contentOffsetY = scrollView.contentOffset.y;
-    NSLog(@"%f",contentOffsetY);
-}
--( void )scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    CGFloat contentOffsetY = scrollView.contentOffset.y;
-    NSLog(@"%f",contentOffsetY);
-}
-    
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

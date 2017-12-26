@@ -24,8 +24,7 @@
     [GQLogManager instance].userName = @"MDD";
     [GQLogManager instance].phoneNumber = @"13888888888";
     [GQLogManager instance].deviceType = @"iOS";
-    NSDictionary* dic =@{@"123":@"321",@"qwe":@"ewq",@"asd":@"dsa"};
-    [[GQLogManager instance] LogStartWithURL:@"http://10.100.32.94:8080/app/fileUpload" FileType:@"multipart/form-data" keyInformation:dic];
+    [[GQLogManager instance] LogStartWithURL:@"http://10.100.32.94:8080/app/fileUpload" FileType:@"multipart/form-data" keyInformation:nil];
     
     
     [self setRootVC];

@@ -10,7 +10,7 @@
 #import "UrlWebViewController.h"
 
 @interface ViewController1 ()
-
+@property(nonatomic,strong) baseScrollView* HeaderScrollView;
 @end
 
 @implementation ViewController1
@@ -23,11 +23,28 @@
     NSArray* arr = @[@"123"];
     NSLog(@"%@",arr[5]);
 }
+- (IBAction)switchBtnChange:(id)sender {
+    
+}
+
+- (IBAction)sliderValueChange:(UISlider *)sender {
+    NSLog(@"%f",sender.value);
+}
+
+-(baseScrollView *)HeaderScrollView{
+    if (!_HeaderScrollView) {
+        _HeaderScrollView = [[baseScrollView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 80)];
+        _HeaderScrollView.backgroundColor = [UIColor greenColor];
+//        _HeaderScrollView.delegate = self;
+        _HeaderScrollView.contentSize = CGSizeMake(screenWidth*2, 0);
+    }
+    return _HeaderScrollView;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setleftBarItem:@"back"];
-    
+    [self.view addSubview:self.HeaderScrollView];
     NSLog(@"%f\n%f\n%f",NavgationHeight,statusBarHeight,tabBarHeight);
     
 //    for (int i = 0; i<9999999; i++) {

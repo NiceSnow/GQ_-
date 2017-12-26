@@ -36,23 +36,22 @@
 		6012689A1FD0F95600B70F60 /* HUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 601268981FD0F95600B70F60 /* HUDView.m */; };
 		601268A01FD14E1B00B70F60 /* UIFont+extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012689F1FD14E1B00B70F60 /* UIFont+extension.m */; };
 		60147CD41FEBBDA20009FC9C /* GQ_LogBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60147CD31FEBBDA20009FC9C /* GQ_LogBaseTableView.m */; };
-		60147D9D1FEF73740009FC9C /* UIScrollView+LogSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 60147D9C1FEF73740009FC9C /* UIScrollView+LogSupport.m */; };
 		60378A981FD67420004F1D93 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 60378A971FD67420004F1D93 /* Request.m */; };
 		60378A9B1FD6743B004F1D93 /* myRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60378A9A1FD6743B004F1D93 /* myRequest.m */; };
 		60378AA21FD685CD004F1D93 /* errorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 60378AA11FD685CD004F1D93 /* errorModel.m */; };
 		60378AA51FD68DE8004F1D93 /* BaseHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60378AA41FD68DE8004F1D93 /* BaseHTTPRequest.m */; };
 		60378AA81FD69043004F1D93 /* HTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60378AA71FD69043004F1D93 /* HTTPRequest.m */; };
+		604E16401FF0A8010026159B /* LogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 604E163F1FF0A8010026159B /* LogModel.m */; };
+		604E16521FF0FBCD0026159B /* UIViewController+AOP.m in Sources */ = {isa = PBXBuildFile; fileRef = 604E16511FF0FBCC0026159B /* UIViewController+AOP.m */; };
+		604E16551FF152060026159B /* baseScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 604E16541FF152060026159B /* baseScrollView.m */; };
 		609079311FDE2A450043B561 /* myModle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6090792D1FDE2A450043B561 /* myModle.m */; };
 		609079321FDE2A450043B561 /* baseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6090792E1FDE2A450043B561 /* baseModel.m */; };
 		6090793B1FDF736A0043B561 /* FileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6090793A1FDF736A0043B561 /* FileUtil.m */; };
 		609079431FE0C58A0043B561 /* GQLogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 609079421FE0C58A0043B561 /* GQLogManager.m */; };
 		609079461FE1005D0043B561 /* GQFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 609079451FE1005D0043B561 /* GQFileManager.m */; };
 		609079491FE261FA0043B561 /* LogRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 609079481FE261FA0043B561 /* LogRequest.m */; };
-		6090794D1FE2839F0043B561 /* UIControl+LogSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 6090794C1FE2839F0043B561 /* UIControl+LogSupport.m */; };
 		609079511FE369710043B561 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6090794F1FE369710043B561 /* TableViewCell.m */; };
 		609079521FE369710043B561 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 609079501FE369710043B561 /* TableViewCell.xib */; };
-		609079551FE36C1F0043B561 /* UITableView+LogSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 609079541FE36C1F0043B561 /* UITableView+LogSupport.m */; };
-		6090795B1FE37CDF0043B561 /* UICollectionView+LogSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 6090795A1FE37CDF0043B561 /* UICollectionView+LogSupport.m */; };
 		6090796C1FE8B40A0043B561 /* MYCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6090796A1FE8B40A0043B561 /* MYCollectionViewCell.m */; };
 		6090796D1FE8B40A0043B561 /* MYCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6090796B1FE8B40A0043B561 /* MYCollectionViewCell.xib */; };
 		609079741FEA16E10043B561 /* GQCrashHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 609079731FEA16E10043B561 /* GQCrashHandler.m */; };
@@ -149,8 +148,6 @@
 		6012689F1FD14E1B00B70F60 /* UIFont+extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+extension.m"; sourceTree = "<group>"; };
 		60147CD21FEBBDA20009FC9C /* GQ_LogBaseTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQ_LogBaseTableView.h; sourceTree = "<group>"; };
 		60147CD31FEBBDA20009FC9C /* GQ_LogBaseTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQ_LogBaseTableView.m; sourceTree = "<group>"; };
-		60147D9B1FEF73740009FC9C /* UIScrollView+LogSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+LogSupport.h"; sourceTree = "<group>"; };
-		60147D9C1FEF73740009FC9C /* UIScrollView+LogSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+LogSupport.m"; sourceTree = "<group>"; };
 		60378A961FD67420004F1D93 /* Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
 		60378A971FD67420004F1D93 /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		60378A991FD6743B004F1D93 /* myRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = myRequest.h; sourceTree = "<group>"; };
@@ -161,6 +158,12 @@
 		60378AA41FD68DE8004F1D93 /* BaseHTTPRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseHTTPRequest.m; sourceTree = "<group>"; };
 		60378AA61FD69043004F1D93 /* HTTPRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPRequest.h; sourceTree = "<group>"; };
 		60378AA71FD69043004F1D93 /* HTTPRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPRequest.m; sourceTree = "<group>"; };
+		604E163E1FF0A8010026159B /* LogModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogModel.h; sourceTree = "<group>"; };
+		604E163F1FF0A8010026159B /* LogModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogModel.m; sourceTree = "<group>"; };
+		604E16501FF0FBCC0026159B /* UIViewController+AOP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AOP.h"; sourceTree = "<group>"; };
+		604E16511FF0FBCC0026159B /* UIViewController+AOP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AOP.m"; sourceTree = "<group>"; };
+		604E16531FF152060026159B /* baseScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = baseScrollView.h; sourceTree = "<group>"; };
+		604E16541FF152060026159B /* baseScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = baseScrollView.m; sourceTree = "<group>"; };
 		6090792D1FDE2A450043B561 /* myModle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myModle.m; sourceTree = "<group>"; };
 		6090792E1FDE2A450043B561 /* baseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = baseModel.m; sourceTree = "<group>"; };
 		6090792F1FDE2A450043B561 /* myModle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myModle.h; sourceTree = "<group>"; };
@@ -173,15 +176,9 @@
 		609079451FE1005D0043B561 /* GQFileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQFileManager.m; sourceTree = "<group>"; };
 		609079471FE261FA0043B561 /* LogRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogRequest.h; sourceTree = "<group>"; };
 		609079481FE261FA0043B561 /* LogRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogRequest.m; sourceTree = "<group>"; };
-		6090794B1FE2839F0043B561 /* UIControl+LogSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIControl+LogSupport.h"; sourceTree = "<group>"; };
-		6090794C1FE2839F0043B561 /* UIControl+LogSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+LogSupport.m"; sourceTree = "<group>"; };
 		6090794E1FE369710043B561 /* TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		6090794F1FE369710043B561 /* TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		609079501FE369710043B561 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
-		609079531FE36C1F0043B561 /* UITableView+LogSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+LogSupport.h"; sourceTree = "<group>"; };
-		609079541FE36C1F0043B561 /* UITableView+LogSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+LogSupport.m"; sourceTree = "<group>"; };
-		609079591FE37CDF0043B561 /* UICollectionView+LogSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+LogSupport.h"; sourceTree = "<group>"; };
-		6090795A1FE37CDF0043B561 /* UICollectionView+LogSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+LogSupport.m"; sourceTree = "<group>"; };
 		609079691FE8B40A0043B561 /* MYCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MYCollectionViewCell.h; sourceTree = "<group>"; };
 		6090796A1FE8B40A0043B561 /* MYCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MYCollectionViewCell.m; sourceTree = "<group>"; };
 		6090796B1FE8B40A0043B561 /* MYCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MYCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -348,6 +345,8 @@
 				6090796B1FE8B40A0043B561 /* MYCollectionViewCell.xib */,
 				60147CD21FEBBDA20009FC9C /* GQ_LogBaseTableView.h */,
 				60147CD31FEBBDA20009FC9C /* GQ_LogBaseTableView.m */,
+				604E16531FF152060026159B /* baseScrollView.h */,
+				604E16541FF152060026159B /* baseScrollView.m */,
 			);
 			path = viewControllers;
 			sourceTree = SOURCE_ROOT;
@@ -407,6 +406,15 @@
 			path = errorModel;
 			sourceTree = "<group>";
 		};
+		604E163D1FF0A7EE0026159B /* LogModel */ = {
+			isa = PBXGroup;
+			children = (
+				604E163E1FF0A8010026159B /* LogModel.h */,
+				604E163F1FF0A8010026159B /* LogModel.m */,
+			);
+			path = LogModel;
+			sourceTree = "<group>";
+		};
 		6090792C1FDE2A450043B561 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,6 +429,7 @@
 		609079401FE0C5790043B561 /* GQLogManager */ = {
 			isa = PBXGroup;
 			children = (
+				604E163D1FF0A7EE0026159B /* LogModel */,
 				609079751FEA18350043B561 /* SynchronousRequest */,
 				609079621FE7A0F30043B561 /* Crash */,
 				6090794A1FE269E40043B561 /* LogSupport */,
@@ -435,14 +444,8 @@
 		6090794A1FE269E40043B561 /* LogSupport */ = {
 			isa = PBXGroup;
 			children = (
-				6090794B1FE2839F0043B561 /* UIControl+LogSupport.h */,
-				6090794C1FE2839F0043B561 /* UIControl+LogSupport.m */,
-				609079531FE36C1F0043B561 /* UITableView+LogSupport.h */,
-				609079541FE36C1F0043B561 /* UITableView+LogSupport.m */,
-				609079591FE37CDF0043B561 /* UICollectionView+LogSupport.h */,
-				6090795A1FE37CDF0043B561 /* UICollectionView+LogSupport.m */,
-				60147D9B1FEF73740009FC9C /* UIScrollView+LogSupport.h */,
-				60147D9C1FEF73740009FC9C /* UIScrollView+LogSupport.m */,
+				604E16501FF0FBCC0026159B /* UIViewController+AOP.h */,
+				604E16511FF0FBCC0026159B /* UIViewController+AOP.m */,
 			);
 			path = LogSupport;
 			sourceTree = "<group>";
@@ -745,21 +748,19 @@
 				60BB99981FCD5AC70065AE72 /* main.m in Sources */,
 				601268521FCFE15B00B70F60 /* NSArray+extension.m in Sources */,
 				601268571FCFE15B00B70F60 /* UILabel+extension.m in Sources */,
-				609079551FE36C1F0043B561 /* UITableView+LogSupport.m in Sources */,
 				609079781FEA18350043B561 /* NSURLSession+SynchronousRequest.m in Sources */,
 				609079511FE369710043B561 /* TableViewCell.m in Sources */,
 				609079321FDE2A450043B561 /* baseModel.m in Sources */,
 				601268581FCFE15B00B70F60 /* NSDate+extension.m in Sources */,
-				60147D9D1FEF73740009FC9C /* UIScrollView+LogSupport.m in Sources */,
 				6012686B1FD018C000B70F60 /* MBProgressHUD+NHAdd.m in Sources */,
+				604E16551FF152060026159B /* baseScrollView.m in Sources */,
 				609079491FE261FA0043B561 /* LogRequest.m in Sources */,
 				601268721FD01C7400B70F60 /* ViewController1.m in Sources */,
-				6090794D1FE2839F0043B561 /* UIControl+LogSupport.m in Sources */,
 				60378A981FD67420004F1D93 /* Request.m in Sources */,
 				601268911FD01E4300B70F60 /* ReadPDFViewController.m in Sources */,
 				601268561FCFE15B00B70F60 /* UIImage+extension.m in Sources */,
 				60BB998A1FCD5AC60065AE72 /* AppDelegate.m in Sources */,
-				6090795B1FE37CDF0043B561 /* UICollectionView+LogSupport.m in Sources */,
+				604E16401FF0A8010026159B /* LogModel.m in Sources */,
 				601268531FCFE15B00B70F60 /* UIButton+extension.m in Sources */,
 				601268631FD006FC00B70F60 /* UIControl+extension.m in Sources */,
 				6012689A1FD0F95600B70F60 /* HUDView.m in Sources */,
@@ -783,6 +784,7 @@
 				60378AA81FD69043004F1D93 /* HTTPRequest.m in Sources */,
 				601268551FCFE15B00B70F60 /* NSData+extension.m in Sources */,
 				601268321FCFB22200B70F60 /* BaseNavigationController.m in Sources */,
+				604E16521FF0FBCD0026159B /* UIViewController+AOP.m in Sources */,
 				60378AA51FD68DE8004F1D93 /* BaseHTTPRequest.m in Sources */,
 				601268891FD01CC600B70F60 /* ViewController4.m in Sources */,
 			);

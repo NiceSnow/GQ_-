@@ -151,8 +151,7 @@ void getAnCrashErrorHandler(NSException *exception)
     [mutArray addObject:[NSString stringWithFormat:@"\"crashType\":\"%@\"",name]];
     [mutArray addObject:@"\"appType\":\"hyd\""];
     [mutArray addObject:@"\"osType\":\"ios\""];
-    NSDictionary* dic = @{@"crash":mutArray};
-    [[GQLogManager instance] SaveCrash:dic];
+    [[GQLogManager instance] SaveCrash:mutArray];
     [GQCrashHandler fuckingKillApp];
 }
 

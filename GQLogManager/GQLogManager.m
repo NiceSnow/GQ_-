@@ -12,6 +12,7 @@
 #import "NSString+extension.h"
 #import "ZipArchive.h"
 
+
 static GQLogManager *instance = nil;
 
 @interface GQLogManager ()
@@ -46,10 +47,11 @@ static GQLogManager *instance = nil;
         [GQCrashHandler installExceptionHandler];
         _userAction = [NSMutableDictionary new];
         _timeline = [NSMutableArray new];
-        [_userAction setObject:_timeline forKey:@"timeline"];
+        [_userAction setObject:_timeline forKey:@"timeLine"];
         
-        _textFieldAction = [NSMutableDictionary new];
-        _textFieldActionArray = [NSMutableArray new];
+//        _textFieldAction = [NSMutableDictionary new];
+//        _textFieldActionArray = [NSMutableArray new];
+        _logModel = [LogModel new];
         
         _userID = @"99999999";
         _userName = @"tourists";
@@ -72,18 +74,18 @@ static GQLogManager *instance = nil;
 
 
 -(void)cleanDisk{
-    NSMutableDictionary* dic = [NSMutableDictionary new];
-    [dic setObject:@"cleanDisk" forKey:@"Type"];
-    [dic setObject:[NSString stringWithCurrentTime] forKey:@"Time"];
-    [_timeline addObject:dic];
+    LogModel* modle = [[LogModel alloc]init];
+    modle.type = @"cleanDisk";
+    modle.time = [NSString stringWithCurrentTime];
+    [_timeline addObject:modle.toDictionary];
     [self WriteToFile];
 }
 
 -(void)clearMemory{
-    NSMutableDictionary* dic = [NSMutableDictionary new];
-    [dic setObject:@"clearMemory" forKey:@"Type"];
-    [dic setObject:[NSString stringWithCurrentTime] forKey:@"Time"];
-    [_timeline addObject:dic];
+    LogModel* modle = [[LogModel alloc]init];
+    modle.type = @"clearMemory";
+    modle.time = [NSString stringWithCurrentTime];
+    [_timeline addObject:modle.toDictionary];
     [self WriteToFile];
 }
 
@@ -122,26 +124,27 @@ static GQLogManager *instance = nil;
     _logServiceUrl = url;
     _fileType = type;
     
-    [_userAction setObject:[NSString stringWithCurrentTime] forKey:@"Time"];
+    [_userAction setObject:[NSString stringWithCurrentTime] forKey:@"time"];
     [[Information allKeys] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [_userAction setObject:Information[obj] forKey:obj];
     }];
 }
 
 - (void)LogEnd;{
-    NSMutableDictionary* dic = [NSMutableDictionary new];
-    [dic setObject:@"LoginOut" forKey:@"Type"];
-    [dic setObject:[NSString stringWithCurrentTime] forKey:@"Time"];
-    [_timeline addObject:dic];
+    LogModel* modle = [[LogModel alloc]init];
+    modle.type = @"loginOut";
+    modle.time = [NSString stringWithCurrentTime];
+    [_timeline addObject:modle.toDictionary];
     [self WriteToFile];
     [self zipFile:_currentLogPath];
     [self sendCurrentZipSynchronous:NO];
     [_userAction removeAllObjects];
     [_timeline removeAllObjects];
-    [_userAction setObject:_timeline forKey:@"timeline"];
+    [_userAction setObject:_timeline forKey:@"timeLine"];
     
-    [_textFieldAction removeAllObjects];
-    [_textFieldActionArray removeAllObjects];
+    _logModel = nil;
+    _logModel = [LogModel new];
+    
     self.userID = @"99999999";
     self.userName = @"tourists";
     self.phoneNumber = @"";
@@ -150,10 +153,10 @@ static GQLogManager *instance = nil;
 
 - (void)BecomeActive;{
     [self endBackground];
-    NSMutableDictionary* dic = [NSMutableDictionary new];
-    [dic setObject:@"BecomeActive" forKey:@"Type"];
-    [dic setObject:[NSString stringWithCurrentTime] forKey:@"Time"];
-    [_timeline addObject:dic];
+    LogModel* modle = [[LogModel alloc]init];
+    modle.type = @"becomeActive";
+    modle.time = [NSString stringWithCurrentTime];
+    [_timeline addObject:modle.toDictionary];
     [self chackLogFolder];
     [self chackLogZipFolder];
 }
@@ -161,39 +164,61 @@ static GQLogManager *instance = nil;
 - (void)EnterBackground;{
 //    只要调用了此函数系统就会允许app的所有线程继续执行，直到任务结束
     [self startBackground];
-//    每次进入后台都会保存并覆盖文件 保证数据的完整性 下次AppStart的时候上传成功后清除
-    NSMutableDictionary* dic = [NSMutableDictionary new];
-    [dic setObject:@"EnterBackground" forKey:@"Type"];
-    [dic setObject:[NSString stringWithCurrentTime] forKey:@"Time"];
-    [_timeline addObject:dic];
+//    每次进入后台都会保存并覆盖文件 保证数据的完整性
+    LogModel* modle = [[LogModel alloc]init];
+    modle.type = @"enterBackground";
+    modle.time = [NSString stringWithCurrentTime];
+    [_timeline addObject:modle.toDictionary];
     [self WriteToFile];
     [self zipFile:_currentLogPath];
     [self sendCurrentZipSynchronous:NO];
     
+    [_timeline removeAllObjects];
+    
+    _logModel = nil;
+    _logModel = [LogModel new];
 }
 
 - (void)showVCWithName:(NSString*)name;{
-    NSMutableDictionary* dic = [NSMutableDictionary new];
-    [dic setObject:@"EnterActivity" forKey:@"Type"];
-    [dic setObject:[NSString stringWithCurrentTime] forKey:@"Time"];
-    [dic setObject:name forKey:@"name"];
-    [_timeline addObject:dic];
+    LogModel* modle = [[LogModel alloc]init];
+    modle.type = @"enterActivity";
+    modle.time = [NSString stringWithCurrentTime];
+    modle.name = name;
+    [_timeline addObject:modle.toDictionary];
 }
 
 - (void)dismissVCWithName:(NSString*)name;{
-    NSMutableDictionary* dic = [NSMutableDictionary new];
-    [dic setObject:@"ExitActivity" forKey:@"Type"];
-    [dic setObject:[NSString stringWithCurrentTime] forKey:@"Time"];
-    [dic setObject:name forKey:@"name"];
-    [_timeline addObject:dic];
+    LogModel* modle = [[LogModel alloc]init];
+    modle.type = @"leaveActivity";
+    modle.time = [NSString stringWithCurrentTime];
+    modle.name = name;
+    [_timeline addObject:modle.toDictionary];
 }
 
 - (void)ButtonPressWithName:(NSString*)name;{
-    NSMutableDictionary* dic = [NSMutableDictionary new];
-    [dic setObject:@"Click" forKey:@"Type"];
-    [dic setObject:[NSString stringWithCurrentTime] forKey:@"Time"];
-    [dic setObject:name forKey:@"name"];
-    [_timeline addObject:dic];
+    LogModel* modle = [[LogModel alloc]init];
+    modle.type = @"click";
+    modle.time = [NSString stringWithCurrentTime];
+    modle.name = name;
+    [_timeline addObject:modle.toDictionary];
+}
+
+- (void)SwitchChangedWithName:(NSString*)name Value:(BOOL)value;{
+    LogModel* modle = [[LogModel alloc]init];
+    modle.type = @"switchChange";
+    modle.time = [NSString stringWithCurrentTime];
+    modle.name = name;
+    modle.isOn = [NSString stringWithFormat:@"%d",value];
+    [_timeline addObject:modle.toDictionary];
+}
+
+- (void)SliderValueChangeWithName:(NSString*)name Value:(CGFloat)value;{
+    LogModel* modle = [[LogModel alloc]init];
+    modle.type = @"sliderChange";
+    modle.time = [NSString stringWithCurrentTime];
+    modle.name = name;
+    modle.sliderValue = [NSString stringWithFormat:@"%f",value];
+    [_timeline addObject:modle.toDictionary];
 }
 
 - (void)GetNotification:(NSDictionary*)message;{
@@ -208,61 +233,65 @@ static GQLogManager *instance = nil;
 }
 
 - (void)scrollViewEndDragging:(float)x :(float)y{
-    NSMutableDictionary* dic = [NSMutableDictionary new];
-    [dic setObject:@"ScrollView" forKey:@"Type"];
+    LogModel* modle = [[LogModel alloc]init];
+    modle.type = @"ScrollView";
     if (_scrollName) {
-        [dic setObject:_scrollName forKey:@"name"];
+        modle.name = _scrollName;
     }
-    [dic setObject:[NSString stringWithCurrentTime] forKey:@"Time"];
-    if (_pointX > x) {
-        [dic setObject:@"right" forKey:@"direction"];
-        [_timeline addObject:dic];
-    }else if (_pointX < x){
-        [dic setObject:@"left" forKey:@"direction"];
-        [_timeline addObject:dic];
-    }
-    if (_pointY > y) {
-        [dic setObject:@"down" forKey:@"direction"];
-        [_timeline addObject:dic];
-    }else if (_pointY < y){
-        [dic setObject:@"up" forKey:@"direction"];
-        [_timeline addObject:dic];
+    modle.time = [NSString stringWithCurrentTime];
+    if (fabsf((float)_pointX - (float)x) > fabsf((float)_pointY - (float)y)) {
+        if (_pointX>x) {
+            modle.direction = @"left";
+            [_timeline addObject:modle.toDictionary];
+        }else{
+            modle.direction = @"right";
+            [_timeline addObject:modle.toDictionary];
+        }
+    }else{
+        if (_pointY>y) {
+            modle.direction = @"up";
+            [_timeline addObject:modle.toDictionary];
+        }else{
+            modle.direction = @"down";
+            [_timeline addObject:modle.toDictionary];
+        }
     }
 }
 
 - (void)TextFieldBeginEditing:(NSString*)name;{
-    [_textFieldAction setValue:@"Text" forKey:@"Type"];
-    [_textFieldAction setValue:name forKey:@"name"];
-    [_textFieldAction setValue:[NSString stringWithCurrentTime] forKey:@"startTime"];
+    _logModel.type = @"text";
+    _logModel.name = name;
+    _logModel.startTime = [NSString stringWithCurrentTime];
 }
 - (void)TextFieldChangedWithText:(NSString*)text;{
-    [_textFieldActionArray addObject:@{@"value":text}];
+
+    [_logModel.actions addObject:@{@"value":text}];
 }
 - (void)TextFieldEndEditing;{
-    [_textFieldAction setValue:[NSString stringWithCurrentTime] forKey:@"EndTime"];
+
+    _logModel.endTime = [NSString stringWithCurrentTime];
 //    复制信息
-    NSArray* arr = [_textFieldActionArray copy];
-    [_textFieldAction setObject:arr forKey:@"actions"];
-    [_timeline addObject:[_textFieldAction copy]];
+
+    [_timeline addObject:_logModel.toDictionary];
 //    重置键盘操作
-    [_textFieldActionArray removeAllObjects];
-    [_textFieldAction removeAllObjects];
+    _logModel = nil;
+    _logModel = [LogModel new];
 }
 
 - (void)SelectCellWithName:(NSString*)name IndexPath:(NSString*)indexPath;{
-    NSMutableDictionary* dic = [NSMutableDictionary new];
-    [dic setObject:@"Item" forKey:@"Type"];
-    [dic setObject:[NSString stringWithCurrentTime] forKey:@"Time"];
-    [dic setObject:name forKey:@"name"];
-    [dic setObject:indexPath forKey:@"indexPath"];
-    [_timeline addObject:dic];
+    LogModel* modle = [[LogModel alloc]init];
+    modle.type = @"itemSelect";
+    modle.time = [NSString stringWithCurrentTime];
+    modle.name = name;
+    modle.indexPath = indexPath;
+    [_timeline addObject:modle.toDictionary];
 }
 
 
 - (void)RequestErrorWithUrl:(NSString*)url Parameter:(NSDictionary*)parameter Message:(NSString*)message Error:(NSError*)error;{
     NSMutableDictionary* dic = [NSMutableDictionary new];
     [dic setObject:@"RequestError" forKey:@"Type"];
-    [dic setObject:[NSString stringWithCurrentTime] forKey:@"Time"];
+    [dic setObject:[NSString stringWithCurrentTime] forKey:@"time"];
     [dic setObject:url forKey:@"url"];
     if (parameter) {
         [dic setObject:parameter forKey:@"parameter"];
@@ -277,14 +306,11 @@ static GQLogManager *instance = nil;
 }
 
 
-- (void)SaveCrash:(NSDictionary*)crash;{
+- (void)SaveCrash:(NSArray*)crash;{
 //    每次进入后台都会保存并覆盖文件 保证数据的完整性 下次AppStart的时候上传成功后清除
 //    主要用于手动写入文件 崩溃
-    NSMutableDictionary* dic = [NSMutableDictionary new];
-    [dic setObject:@"Crash" forKey:@"Type"];
-    [dic setObject:[NSString stringWithCurrentTime] forKey:@"Time"];
-    [dic setObject:crash forKey:@"Crash"];
-    [_timeline addObject:dic];
+    NSDictionary* dic = @{@"crash":crash,@"time":[NSString stringWithCurrentTime]};
+    [_userAction setValue:dic forKey:@"crash"];
     [self WriteToFile];
     [self zipFile:_currentLogPath];
     [self sendCurrentZipSynchronous:YES];
@@ -392,6 +418,10 @@ static GQLogManager *instance = nil;
         UIApplication *application = [UIApplication performSelector:@selector(sharedApplication)];
         [application endBackgroundTask:self.backgroundTaskId];
     }
+}
+
+-(void)resetData;{
+    
 }
 
 -(void)dealloc{

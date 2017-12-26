@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LogModel.h"
 
 
 
@@ -27,8 +28,9 @@
 
 @property(nonatomic,strong) NSMutableArray* timeline;
 
-@property(nonatomic,strong) NSMutableDictionary* textFieldAction;
-@property(nonatomic,strong) NSMutableArray* textFieldActionArray;
+//@property(nonatomic,strong) NSMutableDictionary* textFieldAction;
+//@property(nonatomic,strong) NSMutableArray* textFieldActionArray;
+@property(nonatomic,strong) LogModel* logModel;
 
 @property(nonatomic,copy) NSString* fileName;
 
@@ -81,6 +83,21 @@
  */
 - (void)ButtonPressWithName:(NSString*)name;
 
+
+/**
+ SwitchChanged
+
+ @param name 控件名字
+ @param value bool值
+ */
+- (void)SwitchChangedWithName:(NSString*)name Value:(BOOL)value;
+
+
+/**
+ slider值的改变
+
+ */
+- (void)SliderValueChangeWithName:(NSString*)name Value:(CGFloat)value;
 
 /**
  推送消息获取
@@ -143,6 +160,6 @@
  id为当前时间戳
  主要用于手动写入文件 崩溃
  */
-- (void)SaveCrash:(NSDictionary*)crash;
+- (void)SaveCrash:(NSArray*)crash;
 
 @end

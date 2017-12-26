@@ -104,7 +104,6 @@
     }else{
         failed(error);
     }
-    NSLog(@"hahah");
 }
 
 -(AFHTTPSessionManager*)session{
