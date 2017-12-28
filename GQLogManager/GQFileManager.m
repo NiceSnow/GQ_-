@@ -81,17 +81,10 @@
 +(void)synchronousSendLog:(NSString*)url WithDataUrl:(NSString*)dataUrl fileName:(NSString*)name fileType:(NSString*)type Succeed:(Succeed)succeed failed:(Failed)failed;{
     NSMutableURLRequest *uploadRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
     [uploadRequest setHTTPMethod:@"POST"];
-    [uploadRequest setTimeoutInterval:15];
+    [uploadRequest setTimeoutInterval:10];
     [uploadRequest setValue:@"file" forHTTPHeaderField:@"name"];
     [uploadRequest setValue:name forHTTPHeaderField:@"filename"];
 
-//    NSMutableData* requestMutableData = [NSMutableData data];
-//    NSMutableString* myString = [[NSMutableString alloc]initWithCapacity:0];
-//    [myString appendString:[NSString stringWithFormat:@"name=\"file\"; filename=\"%@\"\r\n",name]];
-//    [myString appendString:[NSString stringWithFormat:@"Content-Type: %@\r\n\r\n",type]];
-//    [myString appendString:[NSString stringWithFormat:@"Content-Encoding: %@\r\n\r\n",@"zip"]];
-//    [requestMutableData appendData:[myString dataUsingEncoding:NSUTF8StringEncoding]];
-//    uploadRequest.HTTPBody = requestMutableData;
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     config.HTTPMaximumConnectionsPerHost = 1;
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:nil];

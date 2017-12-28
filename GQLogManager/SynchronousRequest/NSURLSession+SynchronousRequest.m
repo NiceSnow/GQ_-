@@ -26,7 +26,6 @@
         dispatch_semaphore_signal(semaphore);
     }] resume];
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-    
     return data;
 }
 

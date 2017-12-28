@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "NewFeatureView.h"
 #import "myRequest.h"
+#import "GQFileManager.h"
+#import "BaseHTTPRequest.h"
 
 @interface AppDelegate ()<requestDelegate>
 
@@ -24,8 +26,11 @@
     [GQLogManager instance].userName = @"MDD";
     [GQLogManager instance].phoneNumber = @"13888888888";
     [GQLogManager instance].deviceType = @"iOS";
-    [[GQLogManager instance] LogStartWithURL:@"http://10.100.32.94:8080/app/fileUpload" FileType:@"multipart/form-data" keyInformation:nil];
-    
+    [[GQLogManager instance] LogStartWithURL:@"http://000883.ichengyun.net/uploadDemo/uploadZip.php" FileType:@"multipart/form-data" keyInformation:nil];
+//    崩溃测试
+//    [[GQLogManager instance] BecomeActive];
+//    NSArray* arr = @[@"123"];
+//    NSLog(@"%@",arr[5]);
     
     [self setRootVC];
     NSDictionary* para = @{

@@ -77,7 +77,7 @@ typedef void(^Failed)(id obj);
 
 //异步上传
 +(void)sendLog:(NSString*)url parameters:(NSDictionary*)paramet WithData:(NSData*)data fileName:(NSString*)name fileType:(NSString*)type Succeed:(Succeed)succeed failed:(Failed)failed;
-//同步上传
+//同步上传                
 +(void)synchronousSendLog:(NSString*)url WithDataUrl:(NSString*)dataUrl fileName:(NSString*)name fileType:(NSString*)type Succeed:(Succeed)succeed failed:(Failed)failed;
 
 @end

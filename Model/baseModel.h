@@ -14,4 +14,5 @@
 + (NSArray *)allPropertyNames;
 + (char *)getPropertyType:(NSString *)property;
 - (NSMutableArray *)addObserverToEachProperties;
+- (NSDictionary*)toDictionary;
 @end

@@ -33,6 +33,15 @@
              @"attachments" : @"Attachment" };
 }
 
+- (NSDictionary*)toDictionary{
+    NSMutableDictionary* dic = [NSMutableDictionary new];
+    NSArray* properNames = [baseModel allPropertyNames];
+    [properNames enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [dic setValue:[self valueForKey:obj] forKey:obj];
+    }];
+    return dic;
+}
+
 + (NSArray *)allPropertyNames
 {
     unsigned count;

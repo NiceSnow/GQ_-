@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^available)(BOOL netWork);
+
 @interface BaseHTTPRequest : NSObject
 
 @property(nonatomic,retain) AFHTTPSessionManager *session;
@@ -18,9 +20,8 @@
 /**
  检查网络
  
- @return 网络是否可用
  */
-- (BOOL)isConnectionAvailable;
++ (void)isConnectionAvailable:(available)netWork;
 
 -(void)PostRequestWithURL:(NSString*)url Parameter:(NSDictionary*)parameter succeed:(void (^)(NSURLSessionDataTask *task, id responseObject))success failed:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 

@@ -11,7 +11,8 @@
 #import "GQCrashHandler.h"
 #import "NSString+extension.h"
 #import "ZipArchive.h"
-
+#import "Reachability.h"
+typedef void(^available)(BOOL netWork);
 
 static GQLogManager *instance = nil;
 
@@ -49,8 +50,6 @@ static GQLogManager *instance = nil;
         _timeline = [NSMutableArray new];
         [_userAction setObject:_timeline forKey:@"timeLine"];
         
-//        _textFieldAction = [NSMutableDictionary new];
-//        _textFieldActionArray = [NSMutableArray new];
         _logModel = [LogModel new];
         
         _userID = @"99999999";
@@ -76,7 +75,7 @@ static GQLogManager *instance = nil;
 -(void)cleanDisk{
     LogModel* modle = [[LogModel alloc]init];
     modle.type = @"cleanDisk";
-    modle.time = [NSString stringWithCurrentTime];
+    modle.time = [GQLogManager stringWithCurrentTime];
     [_timeline addObject:modle.toDictionary];
     [self WriteToFile];
 }
@@ -84,7 +83,7 @@ static GQLogManager *instance = nil;
 -(void)clearMemory{
     LogModel* modle = [[LogModel alloc]init];
     modle.type = @"clearMemory";
-    modle.time = [NSString stringWithCurrentTime];
+    modle.time = [GQLogManager stringWithCurrentTime];
     [_timeline addObject:modle.toDictionary];
     [self WriteToFile];
 }
@@ -116,15 +115,14 @@ static GQLogManager *instance = nil;
     }
 }
 /**
- 1.检查时候有之前没被上传的数据 如果有上传 成功后删除文件
- 2.创建userAction 并且赋值头信息
+ 1.创建userAction 并且赋值头信息
  */
 - (void)LogStartWithURL:(NSString*)url FileType:(NSString*)type keyInformation:(NSDictionary*)Information{
 //    基础信息设定
     _logServiceUrl = url;
     _fileType = type;
     
-    [_userAction setObject:[NSString stringWithCurrentTime] forKey:@"time"];
+    [_userAction setObject:[GQLogManager stringWithCurrentTime] forKey:@"time"];
     [[Information allKeys] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [_userAction setObject:Information[obj] forKey:obj];
     }];
@@ -133,7 +131,7 @@ static GQLogManager *instance = nil;
 - (void)LogEnd;{
     LogModel* modle = [[LogModel alloc]init];
     modle.type = @"loginOut";
-    modle.time = [NSString stringWithCurrentTime];
+    modle.time = [GQLogManager stringWithCurrentTime];
     [_timeline addObject:modle.toDictionary];
     [self WriteToFile];
     [self zipFile:_currentLogPath];
@@ -152,13 +150,16 @@ static GQLogManager *instance = nil;
 }
 
 - (void)BecomeActive;{
-    [self endBackground];
-    LogModel* modle = [[LogModel alloc]init];
-    modle.type = @"becomeActive";
-    modle.time = [NSString stringWithCurrentTime];
-    [_timeline addObject:modle.toDictionary];
-    [self chackLogFolder];
-    [self chackLogZipFolder];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self endBackground];
+        LogModel* modle = [[LogModel alloc]init];
+        modle.type = @"becomeActive";
+        modle.time = [GQLogManager stringWithCurrentTime];
+        [_timeline addObject:modle.toDictionary];
+        [self chackLogFolder];
+        [self chackLogZipFolder];
+    });
 }
 
 - (void)EnterBackground;{
@@ -167,7 +168,7 @@ static GQLogManager *instance = nil;
 //    每次进入后台都会保存并覆盖文件 保证数据的完整性
     LogModel* modle = [[LogModel alloc]init];
     modle.type = @"enterBackground";
-    modle.time = [NSString stringWithCurrentTime];
+    modle.time = [GQLogManager stringWithCurrentTime];
     [_timeline addObject:modle.toDictionary];
     [self WriteToFile];
     [self zipFile:_currentLogPath];
@@ -182,7 +183,7 @@ static GQLogManager *instance = nil;
 - (void)showVCWithName:(NSString*)name;{
     LogModel* modle = [[LogModel alloc]init];
     modle.type = @"enterActivity";
-    modle.time = [NSString stringWithCurrentTime];
+    modle.time = [GQLogManager stringWithCurrentTime];
     modle.name = name;
     [_timeline addObject:modle.toDictionary];
 }
@@ -190,7 +191,7 @@ static GQLogManager *instance = nil;
 - (void)dismissVCWithName:(NSString*)name;{
     LogModel* modle = [[LogModel alloc]init];
     modle.type = @"leaveActivity";
-    modle.time = [NSString stringWithCurrentTime];
+    modle.time = [GQLogManager stringWithCurrentTime];
     modle.name = name;
     [_timeline addObject:modle.toDictionary];
 }
@@ -198,7 +199,7 @@ static GQLogManager *instance = nil;
 - (void)ButtonPressWithName:(NSString*)name;{
     LogModel* modle = [[LogModel alloc]init];
     modle.type = @"click";
-    modle.time = [NSString stringWithCurrentTime];
+    modle.time = [GQLogManager stringWithCurrentTime];
     modle.name = name;
     [_timeline addObject:modle.toDictionary];
 }
@@ -206,7 +207,7 @@ static GQLogManager *instance = nil;
 - (void)SwitchChangedWithName:(NSString*)name Value:(BOOL)value;{
     LogModel* modle = [[LogModel alloc]init];
     modle.type = @"switchChange";
-    modle.time = [NSString stringWithCurrentTime];
+    modle.time = [GQLogManager stringWithCurrentTime];
     modle.name = name;
     modle.isOn = [NSString stringWithFormat:@"%d",value];
     [_timeline addObject:modle.toDictionary];
@@ -215,7 +216,7 @@ static GQLogManager *instance = nil;
 - (void)SliderValueChangeWithName:(NSString*)name Value:(CGFloat)value;{
     LogModel* modle = [[LogModel alloc]init];
     modle.type = @"sliderChange";
-    modle.time = [NSString stringWithCurrentTime];
+    modle.time = [GQLogManager stringWithCurrentTime];
     modle.name = name;
     modle.sliderValue = [NSString stringWithFormat:@"%f",value];
     [_timeline addObject:modle.toDictionary];
@@ -238,7 +239,7 @@ static GQLogManager *instance = nil;
     if (_scrollName) {
         modle.name = _scrollName;
     }
-    modle.time = [NSString stringWithCurrentTime];
+    modle.time = [GQLogManager stringWithCurrentTime];
     if (fabsf((float)_pointX - (float)x) > fabsf((float)_pointY - (float)y)) {
         if (_pointX>x) {
             modle.direction = @"left";
@@ -261,7 +262,7 @@ static GQLogManager *instance = nil;
 - (void)TextFieldBeginEditing:(NSString*)name;{
     _logModel.type = @"text";
     _logModel.name = name;
-    _logModel.startTime = [NSString stringWithCurrentTime];
+    _logModel.startTime = [GQLogManager stringWithCurrentTime];
 }
 - (void)TextFieldChangedWithText:(NSString*)text;{
 
@@ -269,7 +270,7 @@ static GQLogManager *instance = nil;
 }
 - (void)TextFieldEndEditing;{
 
-    _logModel.endTime = [NSString stringWithCurrentTime];
+    _logModel.endTime = [GQLogManager stringWithCurrentTime];
 //    复制信息
 
     [_timeline addObject:_logModel.toDictionary];
@@ -281,7 +282,7 @@ static GQLogManager *instance = nil;
 - (void)SelectCellWithName:(NSString*)name IndexPath:(NSString*)indexPath;{
     LogModel* modle = [[LogModel alloc]init];
     modle.type = @"itemSelect";
-    modle.time = [NSString stringWithCurrentTime];
+    modle.time = [GQLogManager stringWithCurrentTime];
     modle.name = name;
     modle.indexPath = indexPath;
     [_timeline addObject:modle.toDictionary];
@@ -291,7 +292,7 @@ static GQLogManager *instance = nil;
 - (void)RequestErrorWithUrl:(NSString*)url Parameter:(NSDictionary*)parameter Message:(NSString*)message Error:(NSError*)error;{
     NSMutableDictionary* dic = [NSMutableDictionary new];
     [dic setObject:@"RequestError" forKey:@"Type"];
-    [dic setObject:[NSString stringWithCurrentTime] forKey:@"time"];
+    [dic setObject:[GQLogManager stringWithCurrentTime] forKey:@"time"];
     [dic setObject:url forKey:@"url"];
     if (parameter) {
         [dic setObject:parameter forKey:@"parameter"];
@@ -300,6 +301,7 @@ static GQLogManager *instance = nil;
         [dic setObject:message forKey:@"message"];
     }
     if (error) {
+        #pragma need change error nserror不能写入文件
         [dic setObject:error forKey:@"error"];
     }
     [_timeline addObject:dic];
@@ -309,17 +311,22 @@ static GQLogManager *instance = nil;
 - (void)SaveCrash:(NSArray*)crash;{
 //    每次进入后台都会保存并覆盖文件 保证数据的完整性 下次AppStart的时候上传成功后清除
 //    主要用于手动写入文件 崩溃
-    NSDictionary* dic = @{@"crash":crash,@"time":[NSString stringWithCurrentTime]};
-    [_userAction setValue:dic forKey:@"crash"];
-    [self WriteToFile];
-    [self zipFile:_currentLogPath];
-    [self sendCurrentZipSynchronous:YES];
+    [GQLogManager checkNetWorlk:^(BOOL netWork) {
+        if (netWork) {
+            NSDictionary* dic = @{@"crash":crash,@"time":[GQLogManager stringWithCurrentTime]};
+            [_userAction setValue:dic forKey:@"crash"];
+            [self WriteToFile];
+            [self zipFile:_currentLogPath];
+            [self sendCurrentZipSynchronous:YES];
+        }
+    }];
 }
 
 -(BOOL)zipFile:(NSString*)path{
+    
     NSMutableArray* arr = [NSMutableArray new];
     [arr addObject:path];
-    _currentZipPath = [NSString stringWithFormat:@"%@/GQLOGZIP_%@.zip",DOCPATH_GQLOGZIP,[NSString stringWithFormat:@"%@_%@",_userID,[NSString stringWithCurrentTime]]];
+    _currentZipPath = [NSString stringWithFormat:@"%@/GQLOGZIP_%@.zip",DOCPATH_GQLOGZIP,[NSString stringWithFormat:@"%@_%@",_userID,[GQLogManager stringWithCurrentTime]]];
     BOOL zipSucceed = [SSZipArchive createZipFileAtPath:_currentZipPath withFilesAtPaths:arr];
     if (zipSucceed) {
         [GQFileManager deleteFileWithPath:path];
@@ -328,8 +335,10 @@ static GQLogManager *instance = nil;
 }
 
 -(void)sendCurrentZipSynchronous:(BOOL)synchronous{
+    
     NSArray* nameArray = [_currentZipPath componentsSeparatedByString:@"/"];
     if (synchronous) {
+        
         [GQFileManager synchronousSendLog:_logServiceUrl WithDataUrl:_currentZipPath fileName:[nameArray lastObject] fileType:_fileType Succeed:^(id obj) {
             [GQFileManager deleteFileWithPath:_currentZipPath];
         } failed:^(id obj) {
@@ -357,7 +366,7 @@ static GQLogManager *instance = nil;
         if ([[fileDic objectForKey:@"log"] count]>0) {
 //            打包zip 如果成功打包 删除所有文件
             
-            BOOL zipSucceed = [SSZipArchive createZipFileAtPath:[NSString stringWithFormat:@"%@/GQLOGZIP_%@.zip",DOCPATH_GQLOGZIP,[NSString stringWithFormat:@"%@_%@",_userID,[NSString stringWithCurrentTime]]] withFilesAtPaths:[fileDic objectForKey:@"log"]];
+            BOOL zipSucceed = [SSZipArchive createZipFileAtPath:[NSString stringWithFormat:@"%@/GQLOGZIP_%@.zip",DOCPATH_GQLOGZIP,[NSString stringWithFormat:@"%@_%@",_userID,[GQLogManager stringWithCurrentTime]]] withFilesAtPaths:[fileDic objectForKey:@"log"]];
             if (zipSucceed) {
                 [[fileDic objectForKey:@"log"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     [GQFileManager deleteFileWithPath:(NSString*)obj];
@@ -380,6 +389,7 @@ static GQLogManager *instance = nil;
                 [GQFileManager sendLog:_logServiceUrl parameters:nil WithData:data fileName:[nameArray lastObject] fileType:_fileType Succeed:^(id obj) {
                     [GQFileManager deleteFileWithPath:[NSString stringWithFormat:@"%@/%@",DOCPATH_GQLOGZIP,[nameArray lastObject]]];
                 } failed:^(id obj) {
+                    
                 }];
             }
         }];
@@ -387,6 +397,7 @@ static GQLogManager *instance = nil;
 }
 
 -(void)WriteToFile{
+    
     _currentLogPath = [NSString stringWithFormat:@"%@/GQLOG_%@.log",DOCPATH_GQLOG,self.fileName];
     if ([GQFileManager WriteToFile:_userAction.jsonStringEncoded Path:_currentLogPath]) {
         NSLog(@"写入文件成功");
@@ -394,7 +405,7 @@ static GQLogManager *instance = nil;
 }
 
 - (NSString*)fileName{
-    return  [NSString stringWithFormat:@"%@_%@",_userID,[NSString stringWithCurrentTime]];;
+    return  [NSString stringWithFormat:@"%@_%@",_userID,[GQLogManager stringWithCurrentTime]];;
 }
 
 -(void)startBackground{
@@ -420,8 +431,20 @@ static GQLogManager *instance = nil;
     }
 }
 
--(void)resetData;{
-    
++ (void)checkNetWorlk:(available)netWork{
+    Reachability *reach = [Reachability reachabilityForInternetConnection];
+    NetworkStatus status = [reach currentReachabilityStatus];
+    if (status == NotReachable) {
+        netWork(NO);
+    }else{
+        netWork(YES);
+    }
+}
+
++(NSString*)stringWithCurrentTime;{
+    NSTimeInterval a= [[NSDate date] timeIntervalSince1970]* 1000;
+    NSString *timeString = [NSString stringWithFormat:@"%.0f", a];
+    return timeString;
 }
 
 -(void)dealloc{

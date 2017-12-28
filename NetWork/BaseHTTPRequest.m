@@ -8,7 +8,6 @@
 
 #import "BaseHTTPRequest.h"
 
-static BOOL netAvailable;
 @interface BaseHTTPRequest ()
 
 @end
@@ -46,6 +45,7 @@ static BOOL netAvailable;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         success(task, responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [[GQLogManager instance] RequestErrorWithUrl:url Parameter:parameter Message:@"服务器访问错误" Error:error];
         failure(task,error);
     }];
 }
@@ -55,12 +55,12 @@ static BOOL netAvailable;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         success(task, responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [[GQLogManager instance] RequestErrorWithUrl:url Parameter:parameter Message:@"服务器访问错误" Error:error];
         failure(task,error);
     }];
 }
 
 -(void)sendData:(NSData*)data fileName:(NSString*)name fileType:(NSString*)type URL:(NSString*)url parameters:(NSDictionary*)params succeed:(void (^)(NSURLSessionDataTask *task, id responseObject))success failed:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;{
-//    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0); //创建信号量
     [self.session POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         if (formData != NULL) {
             [formData appendPartWithFileData:data name:@"file" fileName:name mimeType:type];
@@ -68,31 +68,12 @@ static BOOL netAvailable;
     } progress:^(NSProgress * _Nonnull uploadProgress) {
 
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        dispatch_semaphore_signal(semaphore);   //发送信号
         success(task, responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [[GQLogManager instance] RequestErrorWithUrl:url Parameter:params Message:@"服务器访问错误" Error:error];
         failure(task,error);
 
     }];
-//    dispatch_semaphore_wait(semaphore,DISPATCH_TIME_FOREVER);  //等待
-//    NSLog(@"数据加载完成！");
-//    NSURLSession *session = [NSURLSession sharedSession];
-//    NSURL *URL =[NSURL URLWithString:url];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-//    request.HTTPMethod = @"POST";
-//    //2.3.设置请求头
-//    NSString *header = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",@"----WebKitFormBoundary35cxmtFcIglrlsad"];
-//    [request setValue:header forHTTPHeaderField:@"Content-Type"];
-//
-//    // session上传不需要设置请求体,如果数据在request中会被忽略。
-//    [self getBody:data];
-//    NSURLSessionUploadTask *upLoadTask = [session uploadTaskWithRequest:request fromData:data completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//
-//        NSLog(@"%@",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
-//    }];
-//    // 开启执行
-//    [upLoadTask resume];
-
 }
 
 -(void)downLoadDataWithURL:(NSString*)url Parameter:(NSDictionary*)parameter saveAs:(NSString*)fileName progress:(void (^)(NSProgress *downloadProgress)) downloadProgressBlock completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler{
@@ -137,7 +118,7 @@ static BOOL netAvailable;
         return [path URLByAppendingPathComponent:fileName];
         
     } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-        
+        [[GQLogManager instance] RequestErrorWithUrl:url Parameter:parameter Message:@"服务器访问错误" Error:error];
         NSLog(@"File downloaded to: %@", filePath);
     }];
     
@@ -146,30 +127,26 @@ static BOOL netAvailable;
     
 }
 
-- (BOOL)isConnectionAvailable{
++ (void)isConnectionAvailable:(available)netWork;{
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         switch (status) {
             case AFNetworkReachabilityStatusNotReachable:{
-                
-                netAvailable = YES;
+                netWork(NO);
             }
                 break;
             case AFNetworkReachabilityStatusReachableViaWiFi:{
-                
-                netAvailable = NO;
+                netWork(YES);
             }
                 break;
             case AFNetworkReachabilityStatusReachableViaWWAN:{
-                netAvailable = NO;
-                
+                netWork(YES);
             }
                 break;
             default:
                 break;
         }
     }];
-    return !netAvailable;
 }
 
 -(NSData *)getBody:(NSData*)data

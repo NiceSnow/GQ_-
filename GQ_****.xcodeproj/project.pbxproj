@@ -41,15 +41,14 @@
 		60378AA21FD685CD004F1D93 /* errorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 60378AA11FD685CD004F1D93 /* errorModel.m */; };
 		60378AA51FD68DE8004F1D93 /* BaseHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60378AA41FD68DE8004F1D93 /* BaseHTTPRequest.m */; };
 		60378AA81FD69043004F1D93 /* HTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60378AA71FD69043004F1D93 /* HTTPRequest.m */; };
+		604732B51FF48A560097A1CA /* FileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 604732B41FF48A560097A1CA /* FileUtil.m */; };
 		604E16401FF0A8010026159B /* LogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 604E163F1FF0A8010026159B /* LogModel.m */; };
 		604E16521FF0FBCD0026159B /* UIViewController+AOP.m in Sources */ = {isa = PBXBuildFile; fileRef = 604E16511FF0FBCC0026159B /* UIViewController+AOP.m */; };
 		604E16551FF152060026159B /* baseScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 604E16541FF152060026159B /* baseScrollView.m */; };
 		609079311FDE2A450043B561 /* myModle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6090792D1FDE2A450043B561 /* myModle.m */; };
 		609079321FDE2A450043B561 /* baseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6090792E1FDE2A450043B561 /* baseModel.m */; };
-		6090793B1FDF736A0043B561 /* FileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6090793A1FDF736A0043B561 /* FileUtil.m */; };
 		609079431FE0C58A0043B561 /* GQLogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 609079421FE0C58A0043B561 /* GQLogManager.m */; };
 		609079461FE1005D0043B561 /* GQFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 609079451FE1005D0043B561 /* GQFileManager.m */; };
-		609079491FE261FA0043B561 /* LogRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 609079481FE261FA0043B561 /* LogRequest.m */; };
 		609079511FE369710043B561 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6090794F1FE369710043B561 /* TableViewCell.m */; };
 		609079521FE369710043B561 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 609079501FE369710043B561 /* TableViewCell.xib */; };
 		6090796C1FE8B40A0043B561 /* MYCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6090796A1FE8B40A0043B561 /* MYCollectionViewCell.m */; };
@@ -63,6 +62,7 @@
 		60BB99981FCD5AC70065AE72 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60BB99971FCD5AC70065AE72 /* main.m */; };
 		60BB99A21FCD5AC70065AE72 /* GQ_____Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60BB99A11FCD5AC70065AE72 /* GQ_____Tests.m */; };
 		60BB99AD1FCD5AC70065AE72 /* GQ_____UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60BB99AC1FCD5AC70065AE72 /* GQ_____UITests.m */; };
+		60FBDD241FF483C600F156B1 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FBDD231FF483C600F156B1 /* Reachability.m */; };
 		80C48DBF4429A800715289D2 /* Pods_GQ_____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D44DA665EFAD6C695439D80 /* Pods_GQ_____.framework */; };
 /* End PBXBuildFile section */
 
@@ -158,6 +158,8 @@
 		60378AA41FD68DE8004F1D93 /* BaseHTTPRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseHTTPRequest.m; sourceTree = "<group>"; };
 		60378AA61FD69043004F1D93 /* HTTPRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPRequest.h; sourceTree = "<group>"; };
 		60378AA71FD69043004F1D93 /* HTTPRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPRequest.m; sourceTree = "<group>"; };
+		604732B31FF48A560097A1CA /* FileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtil.h; sourceTree = "<group>"; };
+		604732B41FF48A560097A1CA /* FileUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtil.m; sourceTree = "<group>"; };
 		604E163E1FF0A8010026159B /* LogModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogModel.h; sourceTree = "<group>"; };
 		604E163F1FF0A8010026159B /* LogModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogModel.m; sourceTree = "<group>"; };
 		604E16501FF0FBCC0026159B /* UIViewController+AOP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AOP.h"; sourceTree = "<group>"; };
@@ -168,14 +170,10 @@
 		6090792E1FDE2A450043B561 /* baseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = baseModel.m; sourceTree = "<group>"; };
 		6090792F1FDE2A450043B561 /* myModle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myModle.h; sourceTree = "<group>"; };
 		609079301FDE2A450043B561 /* baseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = baseModel.h; sourceTree = "<group>"; };
-		609079391FDF736A0043B561 /* FileUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileUtil.h; sourceTree = "<group>"; };
-		6090793A1FDF736A0043B561 /* FileUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileUtil.m; sourceTree = "<group>"; };
 		609079411FE0C58A0043B561 /* GQLogManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQLogManager.h; sourceTree = "<group>"; };
 		609079421FE0C58A0043B561 /* GQLogManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQLogManager.m; sourceTree = "<group>"; };
 		609079441FE1005D0043B561 /* GQFileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQFileManager.h; sourceTree = "<group>"; };
 		609079451FE1005D0043B561 /* GQFileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQFileManager.m; sourceTree = "<group>"; };
-		609079471FE261FA0043B561 /* LogRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogRequest.h; sourceTree = "<group>"; };
-		609079481FE261FA0043B561 /* LogRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogRequest.m; sourceTree = "<group>"; };
 		6090794E1FE369710043B561 /* TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		6090794F1FE369710043B561 /* TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		609079501FE369710043B561 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
@@ -200,6 +198,8 @@
 		60BB99A81FCD5AC70065AE72 /* GQ_****UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GQ_****UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		60BB99AC1FCD5AC70065AE72 /* GQ_____UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "GQ_____UITests.m"; sourceTree = "<group>"; };
 		60BB99AE1FCD5AC70065AE72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60FBDD221FF483C600F156B1 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		60FBDD231FF483C600F156B1 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		93B36116048ADAD5C6257071 /* Pods-GQ_****.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GQ_****.release.xcconfig"; path = "Pods/Target Support Files/Pods-GQ_****/Pods-GQ_****.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -311,8 +311,6 @@
 			children = (
 				601268921FD0EA2800B70F60 /* Tools.h */,
 				601268931FD0EA2800B70F60 /* Tools.m */,
-				609079391FDF736A0043B561 /* FileUtil.h */,
-				6090793A1FDF736A0043B561 /* FileUtil.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -391,8 +389,6 @@
 				60378A971FD67420004F1D93 /* Request.m */,
 				60378A991FD6743B004F1D93 /* myRequest.h */,
 				60378A9A1FD6743B004F1D93 /* myRequest.m */,
-				609079471FE261FA0043B561 /* LogRequest.h */,
-				609079481FE261FA0043B561 /* LogRequest.m */,
 			);
 			path = request;
 			sourceTree = "<group>";
@@ -444,6 +440,10 @@
 		6090794A1FE269E40043B561 /* LogSupport */ = {
 			isa = PBXGroup;
 			children = (
+				604732B31FF48A560097A1CA /* FileUtil.h */,
+				604732B41FF48A560097A1CA /* FileUtil.m */,
+				60FBDD221FF483C600F156B1 /* Reachability.h */,
+				60FBDD231FF483C600F156B1 /* Reachability.m */,
 				604E16501FF0FBCC0026159B /* UIViewController+AOP.h */,
 				604E16511FF0FBCC0026159B /* UIViewController+AOP.m */,
 			);
@@ -749,12 +749,12 @@
 				601268521FCFE15B00B70F60 /* NSArray+extension.m in Sources */,
 				601268571FCFE15B00B70F60 /* UILabel+extension.m in Sources */,
 				609079781FEA18350043B561 /* NSURLSession+SynchronousRequest.m in Sources */,
+				60FBDD241FF483C600F156B1 /* Reachability.m in Sources */,
 				609079511FE369710043B561 /* TableViewCell.m in Sources */,
 				609079321FDE2A450043B561 /* baseModel.m in Sources */,
 				601268581FCFE15B00B70F60 /* NSDate+extension.m in Sources */,
 				6012686B1FD018C000B70F60 /* MBProgressHUD+NHAdd.m in Sources */,
 				604E16551FF152060026159B /* baseScrollView.m in Sources */,
-				609079491FE261FA0043B561 /* LogRequest.m in Sources */,
 				601268721FD01C7400B70F60 /* ViewController1.m in Sources */,
 				60378A981FD67420004F1D93 /* Request.m in Sources */,
 				601268911FD01E4300B70F60 /* ReadPDFViewController.m in Sources */,
@@ -762,6 +762,7 @@
 				60BB998A1FCD5AC60065AE72 /* AppDelegate.m in Sources */,
 				604E16401FF0A8010026159B /* LogModel.m in Sources */,
 				601268531FCFE15B00B70F60 /* UIButton+extension.m in Sources */,
+				604732B51FF48A560097A1CA /* FileUtil.m in Sources */,
 				601268631FD006FC00B70F60 /* UIControl+extension.m in Sources */,
 				6012689A1FD0F95600B70F60 /* HUDView.m in Sources */,
 				60378AA21FD685CD004F1D93 /* errorModel.m in Sources */,
@@ -769,7 +770,6 @@
 				601268511FCFE15B00B70F60 /* UIView+extension.m in Sources */,
 				601268541FCFE15B00B70F60 /* NSString+extension.m in Sources */,
 				601268A01FD14E1B00B70F60 /* UIFont+extension.m in Sources */,
-				6090793B1FDF736A0043B561 /* FileUtil.m in Sources */,
 				60147CD41FEBBDA20009FC9C /* GQ_LogBaseTableView.m in Sources */,
 				609079461FE1005D0043B561 /* GQFileManager.m in Sources */,
 				6012683C1FCFD65800B70F60 /* NewFeatureView.m in Sources */,

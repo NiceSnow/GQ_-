@@ -38,6 +38,30 @@
     }\
 }
 
+
+//static void runOnMainThread(void (^block)(void))
+//{
+//    if (!block) return;
+//
+//    if ( [[NSThread currentThread] isMainThread] ) {
+//        block();
+//    } else {
+//        dispatch_async(dispatch_get_main_queue(), block);
+//    }
+//}
+#define runOnMainThread(block)\
+{\
+if (!block) return;\
+\
+if ( [[NSThread currentThread] isMainThread] ) {\
+block();\
+} else {\
+dispatch_async(dispatch_get_main_queue(), block);\
+}\
+}
+
+#define GCDASYNCGlobal( block ) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
+
 //状态栏高度
 #define statusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
 //导航栏高度

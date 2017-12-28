@@ -25,23 +25,9 @@ const NSInteger UncaughtExceptionHandlerReportAddressCount = 5;
 
 @implementation GQCrashHandler
 
-//手动记录一个错误信息上报到crash日志服务器
-+ (void)manualRecodeErrorWithName:(NSString *)name reason:(NSString *)reason userInfo:(NSDictionary *)userInfo
-{
-    NSException *exception = [NSException exceptionWithName:name reason:reason userInfo:userInfo];
-    [[GQCrashHandler defaultManager] recodeHYDCrashErrorWith:exception];
-}
-
 void getAnCrashErrorHandler(NSException *exception)
 {
     [[GQCrashHandler defaultManager] performSelectorOnMainThread:@selector(recodeHYDCrashErrorWith:) withObject:exception waitUntilDone:YES];
-}
-
-+ (void)load
-{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [[self defaultManager] uploadLastCrashInfo];
-    });
 }
 
 + (instancetype)defaultManager {
@@ -94,29 +80,6 @@ void getAnCrashErrorHandler(NSException *exception)
     kill(getpid(), SIGKILL);
 }
 
-
-- (void)uploadLastCrashInfo
-{
-    NSString *crash = [[NSUserDefaults standardUserDefaults] objectForKey:kHydCrashModelKey];
-    //    if (StringIsNullOrEmpty(crash)) {
-    //        return;
-    //    }
-    
-    NSString *crashLog = [NSString stringWithFormat:@"[%@]", crash];
-    //    ApiHttpRequestUtil *requestUtil = [[ApiHttpRequestUtil alloc] init];
-    //    NSString *method = NET_TYPE == 2 ? @"/crashLog/sendCrashLog":@"/appcrash/crashLog/sendCrashLog";
-    //    [requestUtil callPOSTWithParams:@{@"crashlogs":crashLog} methodName:method serviceType:ServiceTypeCrash success:^(id response, NSURLRequest *request) {
-    //        APIURLResponse *urlResonse = (APIURLResponse *)response;
-    //        NSDictionary *subDict = urlResonse.content;
-    //        if ([subDict intValueForKey:@"rspCode" default:0] == 200) {
-    //            WZLogDebug(@"upload crash log success and crashInfo is:%@",crashLog);
-    //            [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kHydCrashModelKey];
-    //        }
-    //    } fail:^(id response, NSURLRequest *request) {
-    //        WZLogError(@"upload crash log failed and crashInfo is:%@ and response is %@",crashLog, response);
-    //    }];
-}
-
 - (void)recodeHYDCrashErrorWith:(NSException*)exception
 {
     NSString *name = [exception name];
@@ -151,6 +114,7 @@ void getAnCrashErrorHandler(NSException *exception)
     [mutArray addObject:[NSString stringWithFormat:@"\"crashType\":\"%@\"",name]];
     [mutArray addObject:@"\"appType\":\"hyd\""];
     [mutArray addObject:@"\"osType\":\"ios\""];
+    
     [[GQLogManager instance] SaveCrash:mutArray];
     [GQCrashHandler fuckingKillApp];
 }
@@ -176,15 +140,13 @@ void hydSignalHandler(int signal)
 
 NSString* getAppInfo()
 {
-    NSString *appInfo = [NSString stringWithFormat:@"App :%@ %@ %@(%@)\nDevice : %@\nOS Version : %@ %@\nUDID :\n",
+    NSString *appInfo = [NSString stringWithFormat:@"App :%@ %@ %@(%@)\nDevice : %@\nOS Version : %@ \nUDID :\n",
                          [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"],
                          [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],
                          [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"],
                          [UIDevice currentDevice].model,
                          [UIDevice currentDevice].systemName,
-                         [UIDevice currentDevice].systemVersion,
-                         @"123"];
-    //                         [UIDevice keyChainUUID]];
+                         [UIDevice currentDevice].systemVersion];
     return appInfo;
 }
 

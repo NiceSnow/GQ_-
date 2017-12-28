@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface GQCrashHandler : NSObject
-//手动记录一个错误信息上报到crash日志服务器
-+ (void)manualRecodeErrorWithName:(NSString *)name reason:(NSString *)reason userInfo:(NSDictionary *)userInfo;
+
+/**
+ 注册崩溃
+ */
 + (void)installExceptionHandler;
 @end
