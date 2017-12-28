@@ -40,9 +40,12 @@
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    viewController.hidesBottomBarWhenPushed = YES;
+    if (self.childViewControllers.count > 0) {
+        // push过程中隐藏tabBar
+        viewController.hidesBottomBarWhenPushed = YES;
+    }
     [super pushViewController:viewController animated:animated];
-//    
+// 修改tabBra的frame 防止iphoneX pushVC底部上移
     CGRect frame = self.tabBarController.tabBar.frame;
     frame.origin.y = [UIScreen mainScreen].bounds.size.height - frame.size.height;
     self.tabBarController.tabBar.frame = frame;

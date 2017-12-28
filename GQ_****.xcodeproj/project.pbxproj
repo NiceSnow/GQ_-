@@ -42,6 +42,7 @@
 		60378AA51FD68DE8004F1D93 /* BaseHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60378AA41FD68DE8004F1D93 /* BaseHTTPRequest.m */; };
 		60378AA81FD69043004F1D93 /* HTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60378AA71FD69043004F1D93 /* HTTPRequest.m */; };
 		604732B51FF48A560097A1CA /* FileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 604732B41FF48A560097A1CA /* FileUtil.m */; };
+		604732B81FF4910E0097A1CA /* UserTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 604732B71FF4910E0097A1CA /* UserTool.m */; };
 		604E16401FF0A8010026159B /* LogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 604E163F1FF0A8010026159B /* LogModel.m */; };
 		604E16521FF0FBCD0026159B /* UIViewController+AOP.m in Sources */ = {isa = PBXBuildFile; fileRef = 604E16511FF0FBCC0026159B /* UIViewController+AOP.m */; };
 		604E16551FF152060026159B /* baseScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 604E16541FF152060026159B /* baseScrollView.m */; };
@@ -160,6 +161,8 @@
 		60378AA71FD69043004F1D93 /* HTTPRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPRequest.m; sourceTree = "<group>"; };
 		604732B31FF48A560097A1CA /* FileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtil.h; sourceTree = "<group>"; };
 		604732B41FF48A560097A1CA /* FileUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtil.m; sourceTree = "<group>"; };
+		604732B61FF4910E0097A1CA /* UserTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserTool.h; sourceTree = "<group>"; };
+		604732B71FF4910E0097A1CA /* UserTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserTool.m; sourceTree = "<group>"; };
 		604E163E1FF0A8010026159B /* LogModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogModel.h; sourceTree = "<group>"; };
 		604E163F1FF0A8010026159B /* LogModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogModel.m; sourceTree = "<group>"; };
 		604E16501FF0FBCC0026159B /* UIViewController+AOP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AOP.h"; sourceTree = "<group>"; };
@@ -311,6 +314,8 @@
 			children = (
 				601268921FD0EA2800B70F60 /* Tools.h */,
 				601268931FD0EA2800B70F60 /* Tools.m */,
+				604732B61FF4910E0097A1CA /* UserTool.h */,
+				604732B71FF4910E0097A1CA /* UserTool.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -742,6 +747,7 @@
 			files = (
 				601268661FD0119200B70F60 /* UIViewController+extension.m in Sources */,
 				6012682F1FCFB1E700B70F60 /* BaseViewController.m in Sources */,
+				604732B81FF4910E0097A1CA /* UserTool.m in Sources */,
 				60378A9B1FD6743B004F1D93 /* myRequest.m in Sources */,
 				601268841FD01CBB00B70F60 /* ViewController3.m in Sources */,
 				601268771FD01C8100B70F60 /* ViewController2.m in Sources */,

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "LogModel.h"
 
-
+typedef void(^available)(BOOL netWork);
 
 @interface GQLogManager : NSObject
 //登陆后需要设置此id
@@ -41,6 +41,13 @@
 
 + (GQLogManager*)instance;
 
+
+/**
+ 检查网络状态
+
+ @param netWork 是否有网络
+ */
++ (void)checkNetWorlk:(available)netWork;
 
 /**
  开启日志服务 创建userAction 并且写入头信息

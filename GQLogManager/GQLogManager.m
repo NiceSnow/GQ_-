@@ -9,10 +9,8 @@
 #import "GQLogManager.h"
 #import "GQFileManager.h"
 #import "GQCrashHandler.h"
-#import "NSString+extension.h"
 #import "ZipArchive.h"
 #import "Reachability.h"
-typedef void(^available)(BOOL netWork);
 
 static GQLogManager *instance = nil;
 
