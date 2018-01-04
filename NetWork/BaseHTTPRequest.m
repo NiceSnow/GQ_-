@@ -127,28 +127,6 @@
     
 }
 
-+ (void)isConnectionAvailable:(available)netWork;{
-    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
-    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        switch (status) {
-            case AFNetworkReachabilityStatusNotReachable:{
-                netWork(NO);
-            }
-                break;
-            case AFNetworkReachabilityStatusReachableViaWiFi:{
-                netWork(YES);
-            }
-                break;
-            case AFNetworkReachabilityStatusReachableViaWWAN:{
-                netWork(YES);
-            }
-                break;
-            default:
-                break;
-        }
-    }];
-}
-
 -(NSData *)getBody:(NSData*)data
 {
     //5.设置请求体

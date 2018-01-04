@@ -68,6 +68,8 @@ dispatch_async(dispatch_get_main_queue(), block);\
 #define NavgationHeight CGRectGetMaxY(self.navigationController.navigationBar.frame)
 //tabbar高度
 #define tabBarHeight CGRectGetHeight(self.tabBarController.tabBar.frame)
+//homebar高度
+#define homeBarHeight CGRectGetHeight(self.tabBarController.tabBar.frame) - 49
 /**
  禁止scrollView自动调节位置 兼容ios11
  */

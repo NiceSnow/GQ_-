@@ -115,4 +115,11 @@
     return [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageName]];
 }
 
+-(CGFloat)FixedHeightRate;{
+    return self.size.width/self.size.height;
+}
+-(CGFloat)FixedWidethRate;{
+    return self.size.height/self.size.width;
+}
+
 @end

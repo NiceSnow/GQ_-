@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^available)(BOOL netWork);
 
 @interface BaseHTTPRequest : NSObject
 

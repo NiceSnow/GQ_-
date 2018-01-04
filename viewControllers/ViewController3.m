@@ -10,6 +10,7 @@
 #import "TableViewCell.h"
 @interface ViewController3 ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) UITableView* tableView;
+@property(nonatomic,strong) NSMutableArray* dataArray;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UILabel *jinduLabel;
 
@@ -27,11 +28,11 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
+    return [_dataArray[section] count];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return _dataArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -40,18 +41,27 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TableViewCell* cell = [TableViewCell createCellWithTableView:tableView];
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld--%ld",indexPath.section,indexPath.row];
+    cell.textLabel.text = _dataArray[indexPath.section][indexPath.row];
     return cell;
 }
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if (_dataArray.count>0) {
+        [_dataArray removeAllObjects];
+    }else{
+        
+    }
+    [self.tableView reloadData];
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray new];
+    }
+    [self addTestData];
     [self.view addSubview:self.tableView];
     // Do any additional setup after loading the view from its nib.
 }
@@ -67,6 +77,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.tableHeaderView = self.HeaderScrollView;
+        _tableView.tableFooterView = [UIView new];
     }
     return _tableView;
 }
@@ -79,6 +90,16 @@
         _HeaderScrollView.contentSize = CGSizeMake(screenWidth*2, 0);
     }
     return _HeaderScrollView;
+}
+
+-(void)addTestData{
+    for (int i = 0; i < 2; i ++) {
+        NSMutableArray* arr = [NSMutableArray new];
+        for (int j = 0; j <10; j++) {
+            [arr addObject:[NSString stringWithFormat:@"%d_%d",i,j]];
+        }
+        [_dataArray addObject:arr];
+    }
 }
 
 /*

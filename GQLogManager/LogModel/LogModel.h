@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GQLogManager.h"
 
 @interface LogModel : NSObject
+@property(nonatomic,copy) NSString* netType;
 @property(nonatomic,copy) NSString* sliderValue;
 @property(nonatomic,copy) NSString* isOn;
 @property(nonatomic,copy) NSString* type;

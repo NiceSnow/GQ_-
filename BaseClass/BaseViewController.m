@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+@class ViewController1;
 
 @interface BaseViewController ()
 
@@ -14,9 +15,33 @@
 
 @implementation BaseViewController
 
+#pragma mark - TableView 占位图
+
+- (UIImage *)GQ_NoDataViewImage {
+    return [UIImage imageNamed:@"play"];
+}
+
+- (NSString *)GQ_NoDataViewMessage {
+    return @"用着还可以";
+}
+
+- (UIColor *)GQ_NoDataViewMessageColor {
+    return [UIColor redColor];
+}
+
+- (NSNumber*)GQ_NoDataViewCenterYOffset{
+    return [NSNumber numberWithFloat:100.0];
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [[GQLogManager instance] showVCWithName:NSStringFromClass([self class])];
+//    控制导航栏隐藏显示
+    if ([self isKindOfClass:NSClassFromString(@"ViewController1")]) {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+    }else{
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -26,6 +51,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    手势返回
+    self.navigationController.interactivePopGestureRecognizer.delegate = (id<UIGestureRecognizerDelegate>)self;
     _barImageView = self.navigationController.navigationBar.subviews.firstObject;
     // Do any additional setup after loading the view.
 }
@@ -104,6 +131,11 @@
 -(void)rightPress2:(UIButton*)btn{
     
 }
+
+- (void)viewSafeAreaInsetsDidChange;{
+    [super viewSafeAreaInsetsDidChange];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

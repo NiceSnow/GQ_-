@@ -11,6 +11,7 @@
 #import "MYCollectionViewCell.h"
 
 @interface ViewController2 ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@property(nonatomic,strong) NSMutableArray* dataArray;
 @property (weak, nonatomic) IBOutlet UIButton *timeBtn;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionVIew;
@@ -21,6 +22,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray new];
+    }
+    [self addTestData];
     UINib *nib = [UINib nibWithNibName:@"MYCollectionViewCell" bundle:[NSBundle mainBundle]];
     [self.collectionVIew registerNib:nib forCellWithReuseIdentifier:@"MYCollectionViewCell"];
     // Do any additional setup after loading the view from its nib.
@@ -34,10 +39,13 @@
 }
 
 //确定section的个数
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView { return 4; }
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView { return _dataArray.count;
+}
 
 //确定每个section对应的item的个数
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section { return 20; }
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return [_dataArray[section] count];
+}
 
 //创建cell
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -51,7 +59,8 @@
 
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    [_dataArray removeAllObjects];
+    [self.collectionVIew reloadData];
 }
 
 
@@ -59,6 +68,15 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(void)addTestData{
+    for (int i = 0; i < 2; i ++) {
+        NSMutableArray* arr = [NSMutableArray new];
+        for (int j = 0; j <100; j++) {
+            [arr addObject:[NSString stringWithFormat:@"%d_%d",i,j]];
+        }
+        [_dataArray addObject:arr];
+    }
 }
 
 /*

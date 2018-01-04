@@ -50,4 +50,13 @@
  */
 +(UIImage*)AutorImage:(NSString*)imageName;
 
+
+/**
+ 固定高度求宽的比率
+
+ @return 比率
+ */
+-(CGFloat)FixedHeightRate;
+-(CGFloat)FixedWidethRate;
+
 @end

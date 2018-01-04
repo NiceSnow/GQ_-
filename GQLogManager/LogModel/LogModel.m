@@ -12,6 +12,7 @@
 -(instancetype)init{
     self = [super init];
     if (self) {
+        _netType = @"nuknow";
         _sliderValue = @"";
         _isOn = @"";
         _type = @"";
@@ -24,6 +25,13 @@
         _actions = [NSMutableArray new];
     }
     return self;
+}
+
+-(NSString *)netType{
+    [GQLogManager checkNetWorlk:^(NSString *netType) {
+        _netType = netType;
+    }];
+    return _netType;
 }
 
 - (NSDictionary*)toDictionary{

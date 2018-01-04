@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "LogModel.h"
 
-typedef void(^available)(BOOL netWork);
+typedef void(^available)(NSString* netType);
 
 @interface GQLogManager : NSObject
+
 //登陆后需要设置此id
 @property(nonatomic,copy) NSString* userID;
 @property(nonatomic,copy) NSString* userName;
@@ -45,7 +46,7 @@ typedef void(^available)(BOOL netWork);
 /**
  检查网络状态
 
- @param netWork 是否有网络
+ @param netWork 网络类型
  */
 + (void)checkNetWorlk:(available)netWork;
 

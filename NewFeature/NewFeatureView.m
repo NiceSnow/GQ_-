@@ -23,7 +23,7 @@ static NSInteger kCount = 3;
 - (void)loadView
 {
     UIImageView *imageView = [[UIImageView alloc] init];
-    imageView.frame = [UIScreen mainScreen].applicationFrame;
+    imageView.frame = [UIScreen mainScreen].bounds;
     imageView.userInteractionEnabled = YES;
     self.view = imageView;
 }

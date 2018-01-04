@@ -14,6 +14,16 @@
 
 static GQLogManager *instance = nil;
 
+#define NETTYPE @[@"unknown",@"2G",@"3G",@"4G",@"5G",@"wifi"]
+typedef enum {
+    NETWORK_TYPE_NONE= 0,
+    NETWORK_TYPE_2G= 1,
+    NETWORK_TYPE_3G= 2,
+    NETWORK_TYPE_4G= 3,
+    NETWORK_TYPE_5G= 4,//  5G目前为猜测结果
+    NETWORK_TYPE_WIFI= 5,
+}NETWORK_TYPE;
+
 @interface GQLogManager ()
 #if TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
 @property (unsafe_unretained, nonatomic) UIBackgroundTaskIdentifier backgroundTaskId;
@@ -119,7 +129,7 @@ static GQLogManager *instance = nil;
 //    基础信息设定
     _logServiceUrl = url;
     _fileType = type;
-    
+    [_userAction setValue:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"] forKey:@"appVersion"];
     [_userAction setObject:[GQLogManager stringWithCurrentTime] forKey:@"time"];
     [[Information allKeys] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [_userAction setObject:Information[obj] forKey:obj];
@@ -155,8 +165,8 @@ static GQLogManager *instance = nil;
         modle.type = @"becomeActive";
         modle.time = [GQLogManager stringWithCurrentTime];
         [_timeline addObject:modle.toDictionary];
-        [self chackLogFolder];
-        [self chackLogZipFolder];
+        [self checkLogFolder];
+        [self checkLogZipFolder];
     });
 }
 
@@ -300,8 +310,11 @@ static GQLogManager *instance = nil;
     }
     if (error) {
         #pragma need change error nserror不能写入文件
-        [dic setObject:error forKey:@"error"];
+//        [dic setObject:error forKey:@"error"];
     }
+    [GQLogManager checkNetWorlk:^(NSString *netType) {
+        [dic setObject:netType forKey:@"netType"];
+    }];
     [_timeline addObject:dic];
 }
 
@@ -309,8 +322,8 @@ static GQLogManager *instance = nil;
 - (void)SaveCrash:(NSArray*)crash;{
 //    每次进入后台都会保存并覆盖文件 保证数据的完整性 下次AppStart的时候上传成功后清除
 //    主要用于手动写入文件 崩溃
-    [GQLogManager checkNetWorlk:^(BOOL netWork) {
-        if (netWork) {
+    [GQLogManager checkNetWorlk:^(NSString *netType) {
+        if (![netType isEqualToString:@"nuknow"]) {
             NSDictionary* dic = @{@"crash":crash,@"time":[GQLogManager stringWithCurrentTime]};
             [_userAction setValue:dic forKey:@"crash"];
             [self WriteToFile];
@@ -356,7 +369,7 @@ static GQLogManager *instance = nil;
     }
 }
 
--(void)chackLogFolder{
+-(void)checkLogFolder{
     BOOL create = [GQFileManager creatrFolder];
     if (create) {
 //        是否有未打包zip的 日志
@@ -376,7 +389,7 @@ static GQLogManager *instance = nil;
     }
 }
 
--(void)chackLogZipFolder{
+-(void)checkLogZipFolder{
     NSDictionary* zipDic = [GQFileManager LastLogZipExist];
     if ([[zipDic objectForKey:@"logZip"] count]>0) {
         [[zipDic objectForKey:@"logZip"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -384,6 +397,7 @@ static GQLogManager *instance = nil;
             NSArray* nameArray = [path componentsSeparatedByString:@"/"];
             NSData *data = [GQFileManager getDataWithPath:path];
             if (data&&[[nameArray lastObject] rangeOfString:@".zip"].location !=NSNotFound) {
+                
                 [GQFileManager sendLog:_logServiceUrl parameters:nil WithData:data fileName:[nameArray lastObject] fileType:_fileType Succeed:^(id obj) {
                     [GQFileManager deleteFileWithPath:[NSString stringWithFormat:@"%@/%@",DOCPATH_GQLOGZIP,[nameArray lastObject]]];
                 } failed:^(id obj) {
@@ -430,12 +444,28 @@ static GQLogManager *instance = nil;
 }
 
 + (void)checkNetWorlk:(available)netWork{
+//    netWork([self getNetworkTypeFromStatusBar]);
     Reachability *reach = [Reachability reachabilityForInternetConnection];
     NetworkStatus status = [reach currentReachabilityStatus];
-    if (status == NotReachable) {
-        netWork(NO);
-    }else{
-        netWork(YES);
+    switch (status) {
+        case NotReachable:
+        {
+            netWork(@"nuknow");
+        }
+            break;
+        case ReachableViaWiFi:
+        {
+            netWork(@"wifi");
+        }
+            break;
+        case ReachableViaWWAN:
+        {
+            netWork([self getNetworkTypeFromStatusBar]);
+        }
+            break;
+
+        default:
+            break;
     }
 }
 
@@ -443,6 +473,22 @@ static GQLogManager *instance = nil;
     NSTimeInterval a= [[NSDate date] timeIntervalSince1970]* 1000;
     NSString *timeString = [NSString stringWithFormat:@"%.0f", a];
     return timeString;
+}
+
++(NSString *)getNetworkTypeFromStatusBar {
+    UIApplication *app = [UIApplication sharedApplication];
+    NSArray *subviews = [[[app valueForKey:@"statusBar"] valueForKey:@"foregroundView"] subviews];
+    NSNumber *dataNetworkItemView = nil;
+    for (id subview in subviews) {
+        if([subview isKindOfClass:[NSClassFromString(@"UIStatusBarDataNetworkItemView") class]])     {
+            dataNetworkItemView = subview;
+            break;
+        }
+    }
+    NETWORK_TYPE nettype = NETWORK_TYPE_NONE;
+    NSNumber * num = [dataNetworkItemView valueForKey:@"dataNetworkType"];
+    nettype = [num intValue];
+    return NETTYPE[nettype];
 }
 
 -(void)dealloc{

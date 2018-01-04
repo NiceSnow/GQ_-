@@ -16,6 +16,10 @@
 
 @implementation UrlWebViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.webView];
@@ -85,9 +89,6 @@
     return _webView;
 }
 
-//-(void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
-//    
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
