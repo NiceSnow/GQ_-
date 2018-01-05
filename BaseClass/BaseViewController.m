@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 @class ViewController1;
+@class UrlWebViewController;
 
 @interface BaseViewController ()
 
@@ -52,7 +53,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    手势返回
-    self.navigationController.interactivePopGestureRecognizer.delegate = (id<UIGestureRecognizerDelegate>)self;
+    __weak UIViewController *weakSelf = self;
+    self.navigationController.interactivePopGestureRecognizer.delegate = (id<UIGestureRecognizerDelegate>)weakSelf;
     _barImageView = self.navigationController.navigationBar.subviews.firstObject;
     // Do any additional setup after loading the view.
 }

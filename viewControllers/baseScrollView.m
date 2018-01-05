@@ -20,8 +20,8 @@
 }
 
 - (void)defaultSet {
-    self.showsVerticalScrollIndicator = NO;
-    self.showsHorizontalScrollIndicator = NO;
+//    self.showsVerticalScrollIndicator = NO;
+//    self.showsHorizontalScrollIndicator = NO;
     self.pagingEnabled = YES;
     self.bounces = NO;
     self.delegate = self;

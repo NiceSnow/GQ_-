@@ -66,6 +66,7 @@
 		60ED98471FF618D600E6934C /* UITableView+NoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 60ED98461FF618D600E6934C /* UITableView+NoData.m */; };
 		60ED984A1FF6221700E6934C /* NoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60ED98491FF6221700E6934C /* NoDataView.m */; };
 		60ED984D1FF6297400E6934C /* UICollectionView+NoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 60ED984C1FF6297400E6934C /* UICollectionView+NoData.m */; };
+		60ED98511FFF804900E6934C /* UIScrollView+panBack.m in Sources */ = {isa = PBXBuildFile; fileRef = 60ED98501FFF804900E6934C /* UIScrollView+panBack.m */; };
 		60FBDD241FF483C600F156B1 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FBDD231FF483C600F156B1 /* Reachability.m */; };
 		80C48DBF4429A800715289D2 /* Pods_GQ_____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D44DA665EFAD6C695439D80 /* Pods_GQ_____.framework */; };
 /* End PBXBuildFile section */
@@ -210,6 +211,8 @@
 		60ED98491FF6221700E6934C /* NoDataView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoDataView.m; sourceTree = "<group>"; };
 		60ED984B1FF6297400E6934C /* UICollectionView+NoData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+NoData.h"; sourceTree = "<group>"; };
 		60ED984C1FF6297400E6934C /* UICollectionView+NoData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+NoData.m"; sourceTree = "<group>"; };
+		60ED984F1FFF804900E6934C /* UIScrollView+panBack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+panBack.h"; sourceTree = "<group>"; };
+		60ED98501FFF804900E6934C /* UIScrollView+panBack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+panBack.m"; sourceTree = "<group>"; };
 		60FBDD221FF483C600F156B1 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		60FBDD231FF483C600F156B1 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		93B36116048ADAD5C6257071 /* Pods-GQ_****.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GQ_****.release.xcconfig"; path = "Pods/Target Support Files/Pods-GQ_****/Pods-GQ_****.release.xcconfig"; sourceTree = "<group>"; };
@@ -268,6 +271,7 @@
 		6012683D1FCFD6DE00B70F60 /* Catrgorys */ = {
 			isa = PBXGroup;
 			children = (
+				60ED984E1FFF802400E6934C /* panBackScrollView */,
 				60ED98441FF6188B00E6934C /* NoDataViewExtension */,
 				601268671FD018C000B70F60 /* NHHUDExtend */,
 				6012684B1FCFE15B00B70F60 /* NSArray+extension.h */,
@@ -563,6 +567,15 @@
 			path = NoDataViewExtension;
 			sourceTree = "<group>";
 		};
+		60ED984E1FFF802400E6934C /* panBackScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				60ED984F1FFF804900E6934C /* UIScrollView+panBack.h */,
+				60ED98501FFF804900E6934C /* UIScrollView+panBack.m */,
+			);
+			path = panBackScrollView;
+			sourceTree = "<group>";
+		};
 		900F7D2A275F6FE6500B1784 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -812,6 +825,7 @@
 				609079431FE0C58A0043B561 /* GQLogManager.m in Sources */,
 				601268351FCFB24100B70F60 /* BaseTabBarController.m in Sources */,
 				601268501FCFE15B00B70F60 /* NSDictionary+extension.m in Sources */,
+				60ED98511FFF804900E6934C /* UIScrollView+panBack.m in Sources */,
 				601268381FCFB25300B70F60 /* BaseTableViewCell.m in Sources */,
 				60378AA81FD69043004F1D93 /* HTTPRequest.m in Sources */,
 				601268551FCFE15B00B70F60 /* NSData+extension.m in Sources */,
