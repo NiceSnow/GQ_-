@@ -11,12 +11,26 @@
 static UserTool *instance = nil;
 
 @implementation UserTool
-+ (UserTool*)instance;{
-    static dispatch_once_t predicate;
-    dispatch_once(&predicate, ^{
-        instance = [[self alloc] init];
-    });
-    return instance;
+
+static UserTool* _instance = nil;
+
++(instancetype) instance
+{
+    static dispatch_once_t onceToken ;
+    dispatch_once(&onceToken, ^{
+        _instance = [[super allocWithZone:NULL] init] ;
+    }) ;
+    return _instance ;
+}
+
++(id) allocWithZone:(struct _NSZone *)zone
+{
+    return [UserTool instance] ;
+}
+
+-(id) copyWithZone:(struct _NSZone *)zone
+{
+    return [UserTool instance] ;
 }
 
 -(instancetype)init{

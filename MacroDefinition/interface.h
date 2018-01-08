@@ -9,5 +9,10 @@
 #ifndef interface_h
 #define interface_h
 
+#ifdef Start_LogService
+#define LogService YES
+#else
+#define LogService NO
+#endif
 
 #endif /* interface_h */

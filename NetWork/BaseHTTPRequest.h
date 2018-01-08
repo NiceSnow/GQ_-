@@ -15,13 +15,6 @@
 
 + (BaseHTTPRequest*)instance;
 
-
-/**
- 检查网络
- 
- */
-+ (void)isConnectionAvailable:(available)netWork;
-
 -(void)PostRequestWithURL:(NSString*)url Parameter:(NSDictionary*)parameter succeed:(void (^)(NSURLSessionDataTask *task, id responseObject))success failed:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 -(void)GetRequestWithURL:(NSString*)url Parameter:(NSDictionary*)parameter succeed:(void (^)(NSURLSessionDataTask *task, id responseObject))success failed:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;

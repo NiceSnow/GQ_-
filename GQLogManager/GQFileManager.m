@@ -15,14 +15,25 @@
 
 @implementation GQFileManager
 
-+ (GQFileManager*)instance
+static GQFileManager* _instance = nil;
+
++(instancetype) instance
 {
-    static GQFileManager *instance = nil;
-    static dispatch_once_t predicate;
-    dispatch_once(&predicate, ^{
-        instance = [[self alloc] init];
-    });
-    return instance;
+    static dispatch_once_t onceToken ;
+    dispatch_once(&onceToken, ^{
+        _instance = [[super allocWithZone:NULL] init] ;
+    }) ;
+    return _instance ;
+}
+
++(id) allocWithZone:(struct _NSZone *)zone
+{
+    return [GQFileManager instance] ;
+}
+
+-(id) copyWithZone:(struct _NSZone *)zone
+{
+    return [GQFileManager instance] ;
 }
 
 + (BOOL)creatrFolder;{

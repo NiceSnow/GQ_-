@@ -23,10 +23,6 @@
 #import "AFNetworking.h"
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
-#import "MacroDefinition.h"
-#import "interface.h"
-#import "ColorDefinition.h"
-#include "FontDefinition.h"
 #import "Masonry.h"
 #import "MBProgressHUD_NHExtend.h"
 #import "MBProgressHUD+NHAdd.h"
@@ -36,6 +32,12 @@
 #import "Tools.h"
 #import "YYKit.h"
 #import "GQLogManager.h"
+#import "VersionControl.h"
+#import "interface.h"
+
+#import "MacroDefinition.h"
+#import "ColorDefinition.h"
+#import "FontDefinition.h"
 #endif
 
 #endif /* PrefixHeader_pch */

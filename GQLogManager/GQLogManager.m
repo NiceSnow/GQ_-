@@ -12,7 +12,6 @@
 #import "ZipArchive.h"
 #import "Reachability.h"
 
-static GQLogManager *instance = nil;
 
 #define NETTYPE @[@"unknown",@"2G",@"3G",@"4G",@"5G",@"wifi"]
 typedef enum {
@@ -33,22 +32,49 @@ typedef enum {
 
 @implementation GQLogManager
 
+static GQLogManager* _instance = nil;
+
++(instancetype) instance
+{
+    static dispatch_once_t onceToken ;
+    dispatch_once(&onceToken, ^{
+        if (LogService) {
+            _instance = [[super allocWithZone:NULL] init] ;
+        }else
+            _instance = nil;
+    }) ;
+    
+    return _instance ;
+}
+
++(id) allocWithZone:(struct _NSZone *)zone
+{
+    return [GQLogManager instance] ;
+}
+
+-(id) copyWithZone:(struct _NSZone *)zone
+{
+    return [GQLogManager instance] ;
+}
 
 -(void)setImmediately:(BOOL)immediately{
     _immediately = immediately;
     if (!_immediately) {
-        instance = nil;
+        _instance = nil;
     }
 }
 
-+ (GQLogManager*)instance
-{
-    static dispatch_once_t predicate;
-    dispatch_once(&predicate, ^{
-        instance = [[self alloc] init];
-    });
-    return instance;
-}
+//+ (GQLogManager*)instance
+//{
+//    static dispatch_once_t predicate;
+//    dispatch_once(&predicate, ^{
+//        if (LogService) {
+//            instance = [[self alloc] init];
+//        }else
+//            instance = nil;
+//    });
+//    return instance;
+//}
 
 - (id)init{
     if (self = [super init]){

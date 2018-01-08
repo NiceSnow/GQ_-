@@ -21,7 +21,6 @@
 		601268561FCFE15B00B70F60 /* UIImage+extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012684D1FCFE15B00B70F60 /* UIImage+extension.m */; };
 		601268571FCFE15B00B70F60 /* UILabel+extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012684E1FCFE15B00B70F60 /* UILabel+extension.m */; };
 		601268581FCFE15B00B70F60 /* NSDate+extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012684F1FCFE15B00B70F60 /* NSDate+extension.m */; };
-		601268601FD0035A00B70F60 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6012685F1FD0035A00B70F60 /* Images.xcassets */; };
 		601268631FD006FC00B70F60 /* UIControl+extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 601268621FD006FC00B70F60 /* UIControl+extension.m */; };
 		601268661FD0119200B70F60 /* UIViewController+extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 601268651FD0119200B70F60 /* UIViewController+extension.m */; };
 		6012686B1FD018C000B70F60 /* MBProgressHUD+NHAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012686A1FD018C000B70F60 /* MBProgressHUD+NHAdd.m */; };
@@ -29,8 +28,6 @@
 		601268771FD01C8100B70F60 /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 601268751FD01C8100B70F60 /* ViewController2.m */; };
 		601268841FD01CBB00B70F60 /* ViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 601268821FD01CBB00B70F60 /* ViewController3.m */; };
 		601268891FD01CC600B70F60 /* ViewController4.m in Sources */ = {isa = PBXBuildFile; fileRef = 601268871FD01CC600B70F60 /* ViewController4.m */; };
-		6012688E1FD01E1800B70F60 /* UrlWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012688D1FD01E1800B70F60 /* UrlWebViewController.m */; };
-		601268911FD01E4300B70F60 /* ReadPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601268901FD01E4300B70F60 /* ReadPDFViewController.m */; };
 		601268941FD0EA2800B70F60 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 601268931FD0EA2800B70F60 /* Tools.m */; };
 		601268961FD0F78F00B70F60 /* Londing.gif in Resources */ = {isa = PBXBuildFile; fileRef = 601268951FD0F78E00B70F60 /* Londing.gif */; };
 		6012689A1FD0F95600B70F60 /* HUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 601268981FD0F95600B70F60 /* HUDView.m */; };
@@ -67,6 +64,8 @@
 		60ED984A1FF6221700E6934C /* NoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60ED98491FF6221700E6934C /* NoDataView.m */; };
 		60ED984D1FF6297400E6934C /* UICollectionView+NoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 60ED984C1FF6297400E6934C /* UICollectionView+NoData.m */; };
 		60ED98511FFF804900E6934C /* UIScrollView+panBack.m in Sources */ = {isa = PBXBuildFile; fileRef = 60ED98501FFF804900E6934C /* UIScrollView+panBack.m */; };
+		60ED995320030CE000E6934C /* ReadPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60ED995120030CE000E6934C /* ReadPDFViewController.m */; };
+		60ED995420030CE000E6934C /* UrlWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60ED995220030CE000E6934C /* UrlWebViewController.m */; };
 		60FBDD241FF483C600F156B1 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FBDD231FF483C600F156B1 /* Reachability.m */; };
 		80C48DBF4429A800715289D2 /* Pods_GQ_____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D44DA665EFAD6C695439D80 /* Pods_GQ_____.framework */; };
 /* End PBXBuildFile section */
@@ -124,7 +123,6 @@
 		6012685C1FCFE4B900B70F60 /* FontDefinition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FontDefinition.h; sourceTree = "<group>"; };
 		6012685D1FCFF96900B70F60 /* interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = interface.h; sourceTree = "<group>"; };
 		6012685E1FCFFCA800B70F60 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		6012685F1FD0035A00B70F60 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		601268611FD006FC00B70F60 /* UIControl+extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIControl+extension.h"; sourceTree = "<group>"; };
 		601268621FD006FC00B70F60 /* UIControl+extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+extension.m"; sourceTree = "<group>"; };
 		601268641FD0119200B70F60 /* UIViewController+extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+extension.h"; sourceTree = "<group>"; };
@@ -140,10 +138,6 @@
 		601268821FD01CBB00B70F60 /* ViewController3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController3.m; sourceTree = "<group>"; };
 		601268861FD01CC600B70F60 /* ViewController4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController4.h; sourceTree = "<group>"; };
 		601268871FD01CC600B70F60 /* ViewController4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController4.m; sourceTree = "<group>"; };
-		6012688C1FD01E1800B70F60 /* UrlWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UrlWebViewController.h; sourceTree = "<group>"; };
-		6012688D1FD01E1800B70F60 /* UrlWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UrlWebViewController.m; sourceTree = "<group>"; };
-		6012688F1FD01E4300B70F60 /* ReadPDFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReadPDFViewController.h; sourceTree = "<group>"; };
-		601268901FD01E4300B70F60 /* ReadPDFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReadPDFViewController.m; sourceTree = "<group>"; };
 		601268921FD0EA2800B70F60 /* Tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		601268931FD0EA2800B70F60 /* Tools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		601268951FD0F78E00B70F60 /* Londing.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Londing.gif; sourceTree = "<group>"; };
@@ -213,6 +207,11 @@
 		60ED984C1FF6297400E6934C /* UICollectionView+NoData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+NoData.m"; sourceTree = "<group>"; };
 		60ED984F1FFF804900E6934C /* UIScrollView+panBack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+panBack.h"; sourceTree = "<group>"; };
 		60ED98501FFF804900E6934C /* UIScrollView+panBack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+panBack.m"; sourceTree = "<group>"; };
+		60ED994F20030CE000E6934C /* ReadPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadPDFViewController.h; sourceTree = "<group>"; };
+		60ED995020030CE000E6934C /* UrlWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlWebViewController.h; sourceTree = "<group>"; };
+		60ED995120030CE000E6934C /* ReadPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadPDFViewController.m; sourceTree = "<group>"; };
+		60ED995220030CE000E6934C /* UrlWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlWebViewController.m; sourceTree = "<group>"; };
+		60ED995620036F4F00E6934C /* VersionControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VersionControl.h; sourceTree = "<group>"; };
 		60FBDD221FF483C600F156B1 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		60FBDD231FF483C600F156B1 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		93B36116048ADAD5C6257071 /* Pods-GQ_****.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GQ_****.release.xcconfig"; path = "Pods/Target Support Files/Pods-GQ_****/Pods-GQ_****.release.xcconfig"; sourceTree = "<group>"; };
@@ -305,6 +304,7 @@
 		601268591FCFE2F300B70F60 /* MacroDefinition */ = {
 			isa = PBXGroup;
 			children = (
+				60ED995620036F4F00E6934C /* VersionControl.h */,
 				6012685D1FCFF96900B70F60 /* interface.h */,
 				6012685A1FCFE2F300B70F60 /* MacroDefinition.h */,
 				6012685B1FCFE49D00B70F60 /* ColorDefinition.h */,
@@ -338,7 +338,6 @@
 			isa = PBXGroup;
 			children = (
 				601268971FD0F95600B70F60 /* HUD */,
-				6012688B1FD01DFD00B70F60 /* webView */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -346,6 +345,7 @@
 		6012686E1FD01C4B00B70F60 /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				60ED994E20030CE000E6934C /* webView */,
 				6012686F1FD01C7400B70F60 /* ViewController1.h */,
 				601268701FD01C7400B70F60 /* ViewController1.m */,
 				601268741FD01C8100B70F60 /* ViewController2.h */,
@@ -367,17 +367,6 @@
 			);
 			path = viewControllers;
 			sourceTree = SOURCE_ROOT;
-		};
-		6012688B1FD01DFD00B70F60 /* webView */ = {
-			isa = PBXGroup;
-			children = (
-				6012688C1FD01E1800B70F60 /* UrlWebViewController.h */,
-				6012688D1FD01E1800B70F60 /* UrlWebViewController.m */,
-				6012688F1FD01E4300B70F60 /* ReadPDFViewController.h */,
-				601268901FD01E4300B70F60 /* ReadPDFViewController.m */,
-			);
-			path = webView;
-			sourceTree = "<group>";
 		};
 		601268971FD0F95600B70F60 /* HUD */ = {
 			isa = PBXGroup;
@@ -491,6 +480,7 @@
 			isa = PBXGroup;
 			children = (
 				601268951FD0F78E00B70F60 /* Londing.gif */,
+				60ED995520035F9000E6934C /* Libs */,
 				609079401FE0C5790043B561 /* GQLogManager */,
 				6090792C1FDE2A450043B561 /* Model */,
 				601268A11FD4E29200B70F60 /* NetWork */,
@@ -531,7 +521,6 @@
 				60BB99931FCD5AC70065AE72 /* LaunchScreen.storyboard */,
 				60BB99961FCD5AC70065AE72 /* Info.plist */,
 				60BB99971FCD5AC70065AE72 /* main.m */,
-				6012685F1FD0035A00B70F60 /* Images.xcassets */,
 			);
 			path = "GQ_****";
 			sourceTree = "<group>";
@@ -574,6 +563,24 @@
 				60ED98501FFF804900E6934C /* UIScrollView+panBack.m */,
 			);
 			path = panBackScrollView;
+			sourceTree = "<group>";
+		};
+		60ED994E20030CE000E6934C /* webView */ = {
+			isa = PBXGroup;
+			children = (
+				60ED994F20030CE000E6934C /* ReadPDFViewController.h */,
+				60ED995020030CE000E6934C /* UrlWebViewController.h */,
+				60ED995120030CE000E6934C /* ReadPDFViewController.m */,
+				60ED995220030CE000E6934C /* UrlWebViewController.m */,
+			);
+			path = webView;
+			sourceTree = "<group>";
+		};
+		60ED995520035F9000E6934C /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Libs;
 			sourceTree = "<group>";
 		};
 		900F7D2A275F6FE6500B1784 /* Frameworks */ = {
@@ -704,7 +711,6 @@
 			files = (
 				60BB99951FCD5AC70065AE72 /* LaunchScreen.storyboard in Resources */,
 				609079521FE369710043B561 /* TableViewCell.xib in Resources */,
-				601268601FD0035A00B70F60 /* Images.xcassets in Resources */,
 				601268961FD0F78F00B70F60 /* Londing.gif in Resources */,
 				60BB99921FCD5AC70065AE72 /* Assets.xcassets in Resources */,
 				6090796D1FE8B40A0043B561 /* MYCollectionViewCell.xib in Resources */,
@@ -800,7 +806,6 @@
 				601268721FD01C7400B70F60 /* ViewController1.m in Sources */,
 				60378A981FD67420004F1D93 /* Request.m in Sources */,
 				60ED984D1FF6297400E6934C /* UICollectionView+NoData.m in Sources */,
-				601268911FD01E4300B70F60 /* ReadPDFViewController.m in Sources */,
 				601268561FCFE15B00B70F60 /* UIImage+extension.m in Sources */,
 				60BB998A1FCD5AC60065AE72 /* AppDelegate.m in Sources */,
 				604E16401FF0A8010026159B /* LogModel.m in Sources */,
@@ -818,8 +823,8 @@
 				60147CD41FEBBDA20009FC9C /* GQ_LogBaseTableView.m in Sources */,
 				609079461FE1005D0043B561 /* GQFileManager.m in Sources */,
 				6012683C1FCFD65800B70F60 /* NewFeatureView.m in Sources */,
-				6012688E1FD01E1800B70F60 /* UrlWebViewController.m in Sources */,
 				609079741FEA16E10043B561 /* GQCrashHandler.m in Sources */,
+				60ED995420030CE000E6934C /* UrlWebViewController.m in Sources */,
 				6090796C1FE8B40A0043B561 /* MYCollectionViewCell.m in Sources */,
 				601268941FD0EA2800B70F60 /* Tools.m in Sources */,
 				609079431FE0C58A0043B561 /* GQLogManager.m in Sources */,
@@ -831,6 +836,7 @@
 				601268551FCFE15B00B70F60 /* NSData+extension.m in Sources */,
 				601268321FCFB22200B70F60 /* BaseNavigationController.m in Sources */,
 				604E16521FF0FBCD0026159B /* UIViewController+AOP.m in Sources */,
+				60ED995320030CE000E6934C /* ReadPDFViewController.m in Sources */,
 				60378AA51FD68DE8004F1D93 /* BaseHTTPRequest.m in Sources */,
 				601268891FD01CC600B70F60 /* ViewController4.m in Sources */,
 			);

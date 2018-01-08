@@ -16,14 +16,25 @@
 
 
 
-+ (BaseHTTPRequest*)instance
+static BaseHTTPRequest* _instance = nil;
+
++(instancetype) instance
 {
-    static BaseHTTPRequest *instance = nil;
-    static dispatch_once_t predicate;
-    dispatch_once(&predicate, ^{
-        instance = [[self alloc] init];
-    });
-    return instance;
+    static dispatch_once_t onceToken ;
+    dispatch_once(&onceToken, ^{
+        _instance = [[super allocWithZone:NULL] init] ;
+    }) ;
+    return _instance ;
+}
+
++(id) allocWithZone:(struct _NSZone *)zone
+{
+    return [BaseHTTPRequest instance] ;
+}
+
+-(id) copyWithZone:(struct _NSZone *)zone
+{
+    return [BaseHTTPRequest instance] ;
 }
 
 - (id)init{
