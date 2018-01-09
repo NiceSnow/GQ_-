@@ -130,4 +130,6 @@ typedef NS_ENUM(NSInteger,widthORheight) {
  @return 解密后的string
  */
 - (NSString *)decryptWithKey:(NSString *)key;
+
+
 @end

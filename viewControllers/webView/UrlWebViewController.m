@@ -12,7 +12,8 @@
 
 @interface UrlWebViewController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 @property (nonatomic, strong)WKWebView * webView;
-@property(nonatomic,strong) baseScrollView* HeaderScrollView;
+@property (nonatomic, strong) UIProgressView *progressView;
+@property (nonatomic, strong) JSContext *jsContext;
 @end
 
 @implementation UrlWebViewController
@@ -21,17 +22,76 @@
     [super viewWillAppear:animated];
 }
 
+-(void)rightPress:(UIButton*)btn{
+//    本地发消息给h5
+    //    webView.evaluateJavaScript("getName()") { (any,error) -> Void in
+    [self.webView evaluateJavaScript:@"callAlert()" completionHandler:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setrightBarItem:@"play"];
 //    [self.view addSubview:self.HeaderScrollView];
     [self.view addSubview:self.webView];
+    
+    //进度条初始化
+    self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 88, screenWidth, 2)];
+    self.progressView.backgroundColor = [UIColor greenColor];
+    self.progressView.progressTintColor = [UIColor blueColor];
+    //设置进度条的高度，下面这句代码表示进度条的宽度变为原来的1倍，高度变为原来的1.5倍.
+    self.progressView.transform = CGAffineTransformMakeScale(1.0f, 1.5f);
+    [self.view addSubview:self.progressView];
+    
+    [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
+    
     [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.bottom.offset(0);
     }];
     self.navigationItem.leftBarButtonItem = [Tools getBarButtonItemWithTarget:self action:@selector(leftBarButtonItemAction)];
-    [HUDView showGIFHUD:self];
+//    [HUDView showGIFHUD:self];
     [self loadWebView];
     // Do any additional setup after loading the view.
+}
+
+- (void)callAndroid:(id)message
+{
+    NSLog(@"------------------------------%@", message);
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"estimatedProgress"]) {
+        self.progressView.progress = self.webView.estimatedProgress;
+        if (self.progressView.progress == 1) {
+            /*
+             *添加一个简单的动画，将progressView的Height变为1.4倍，在开始加载网页的代理中会恢复为1.5倍
+             *动画时长0.25s，延时0.3s后开始动画
+             *动画结束后将progressView隐藏
+             */
+            __weak typeof (self)weakSelf = self;
+            [UIView animateWithDuration:0.25f delay:0.3f options:UIViewAnimationOptionCurveEaseOut animations:^{
+                weakSelf.progressView.transform = CGAffineTransformMakeScale(1.0f, 1.4f);
+            } completion:^(BOOL finished) {
+                weakSelf.progressView.hidden = YES;
+            }];
+        }
+    }
+    /*
+     else if ([keyPath isEqualToString:@"title"]){
+     
+     if (object == self.wkWebView) {
+     
+     self.navigationItem.title = self.wkWebView.title;
+     
+     } else {
+     
+     [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+     }
+     }
+     */
+    else {
+        
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
 - (void)leftBarButtonItemAction
@@ -39,17 +99,6 @@
     if ([self.webView canGoBack]) {
         [self.webView goBack];
     }else{
-//        CATransition* transition = [CATransition animation];
-//        //执行时间长短
-//        transition.duration = 0.5;
-//        //动画的开始与结束的快慢
-//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//        //各种动画效果
-//        transition.type = kCATransitionMoveIn; //kCATransitionMoveIn, kCATransitionPush, kCATransitionReveal, kCATransitionFade
-//        //动画方向
-//        transition.subtype = kCATransitionFromTop; //kCATransitionFromLeft, kCATransitionFromRight, kCATransitionFromTop, kCATransitionFromBottom
-//        //将动画添加在视图层上
-//        [self.navigationController.view.layer addAnimation:transition forKey:nil];
         [[self navigationController] popViewControllerAnimated:YES];
     }
 }
@@ -60,17 +109,24 @@
     [self.webView loadRequest:request];
 }
 
-// 页面加载完成之后调用
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    [HUDView hiddenHUD];
-}
 // 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
-    
+    //防止progressView被网页挡住
+    [self.view bringSubviewToFront:self.progressView];
+    //开始加载网页时展示出progressView
+    self.progressView.hidden = NO;
+    //开始加载网页的时候将progressView的Height恢复为1.5倍
+    self.progressView.transform = CGAffineTransformMakeScale(1.0f, 1.5f);
+}
+// 页面加载完成之后调用
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    self.progressView.hidden = YES;
+    [HUDView hiddenHUD];
 }
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation{
-    
+    self.progressView.hidden = YES;
+    [HUDView hiddenHUD];
 }
 
 // 接收到服务器跳转请求之后调用
@@ -79,7 +135,8 @@
 //WKUserContentController实现js native交互
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
 {
-    
+    NSDictionary *msgBody = [[NSDictionary alloc] initWithDictionary:message.body];
+    NSLog(@"%@",msgBody);
 }
 // 在发送请求之前，决定是否跳转
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
@@ -97,7 +154,19 @@
 - (WKWebView *)webView
 {
     if (!_webView) {
-        _webView =  [[WKWebView alloc]init];
+//        h5传消息到本地  userContentController方法接收消息
+        WKWebViewConfiguration* config = [[WKWebViewConfiguration alloc]init];
+        //注册js方法
+        config.userContentController = [[WKUserContentController alloc]init];
+        //webViewAppShare这个需保持跟服务器端的一致，服务器端通过这个name发消息，客户端这边回调接收消息，从而做相关的处理
+        [config.userContentController addScriptMessageHandler:self name:@"Message"];
+//        常规设置
+        WKPreferences *preferences = [WKPreferences new];
+        preferences.javaScriptCanOpenWindowsAutomatically = YES;
+        preferences.minimumFontSize = 40.0;
+        config.preferences = preferences;
+        
+        _webView =  [[WKWebView alloc]initWithFrame:CGRectZero configuration:config];
         _webView.UIDelegate = self;
         _webView.navigationDelegate = self;
         _webView.backgroundColor = [UIColor brownColor];
@@ -112,15 +181,10 @@
     // Dispose of any resources that can be recreated.
 }
 
--(baseScrollView *)HeaderScrollView{
-    if (!_HeaderScrollView) {
-        _HeaderScrollView = [[baseScrollView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
-        _HeaderScrollView.backgroundColor = [UIColor greenColor];
-        //        _HeaderScrollView.delegate = self;
-        _HeaderScrollView.contentSize = CGSizeMake(screenWidth*2, 0);
-    }
-    return _HeaderScrollView;
+- (void)dealloc {
+    [self.webView removeObserver:self forKeyPath:@"estimatedProgress"];
 }
+
 /*
 #pragma mark - Navigation
 

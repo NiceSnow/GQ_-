@@ -7,7 +7,14 @@
 //
 
 #import "BaseViewController.h"
+#import <JavaScriptCore/JavaScriptCore.h>
 
-@interface UrlWebViewController : BaseViewController
+@protocol ZBAddJSDelegate<JSExport>
+
+- (void)callAndroid:(id)message;
+
+@end
+
+@interface UrlWebViewController : BaseViewController<ZBAddJSDelegate>
 @property (nonatomic, copy)NSString* urlString;
 @end

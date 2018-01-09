@@ -15,15 +15,15 @@
 
 @implementation GQFileManager
 
-static GQFileManager* _instance = nil;
+static GQFileManager* _FileManagerInstance = nil;
 
 +(instancetype) instance
 {
     static dispatch_once_t onceToken ;
     dispatch_once(&onceToken, ^{
-        _instance = [[super allocWithZone:NULL] init] ;
+        _FileManagerInstance = [[super allocWithZone:NULL] init] ;
     }) ;
-    return _instance ;
+    return _FileManagerInstance ;
 }
 
 +(id) allocWithZone:(struct _NSZone *)zone

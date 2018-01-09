@@ -23,7 +23,7 @@ typedef NS_ENUM(NSUInteger, requestType) {
 #define DES_KEY @"%hn970lims@rJBijg0JmumOf"
 #define SERVIVE_KEY @"zidingyi"
 
-@interface HTTPRequest : BaseHTTPRequest
+@interface HTTPRequest : NSObject
 
 
 /**

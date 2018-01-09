@@ -20,6 +20,14 @@
 #ifdef __OBJC__
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+//注意import顺序 必须先加载 VersionControl.h
+#import "VersionControl.h"
+#import "interface.h"
+#import "MacroDefinition.h"
+#import "ColorDefinition.h"
+#import "FontDefinition.h"
+#import "KeysDefinition.h"
+
 #import "AFNetworking.h"
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
@@ -32,12 +40,6 @@
 #import "Tools.h"
 #import "YYKit.h"
 #import "GQLogManager.h"
-#import "VersionControl.h"
-#import "interface.h"
-
-#import "MacroDefinition.h"
-#import "ColorDefinition.h"
-#import "FontDefinition.h"
 #endif
 
 #endif /* PrefixHeader_pch */

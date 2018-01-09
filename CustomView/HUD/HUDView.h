@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface HUDView : UIView
-+ (HUDView *)Instance;
++ (HUDView *)instance;
 +(void)showGIFHUD:(UIViewController*)VC;
 +(void)hiddenHUD;
 @end

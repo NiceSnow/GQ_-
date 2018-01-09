@@ -50,6 +50,9 @@ typedef void(^available)(NSString* netType);
  */
 + (void)checkNetWorlk:(available)netWork;
 
+//获取当前时间cuo
++(NSString*)stringWithCurrentTime;
+
 /**
  开启日志服务 创建userAction 并且写入头信息
  */
@@ -106,6 +109,14 @@ typedef void(^available)(NSString* netType);
 
  */
 - (void)SliderValueChangeWithName:(NSString*)name Value:(CGFloat)value;
+
+
+/**
+ web点击统计
+
+ @param name 名字
+ */
+- (void)WebViewMessageWithName:(NSString*)name;
 
 /**
  推送消息获取

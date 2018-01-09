@@ -12,15 +12,15 @@ static UserTool *instance = nil;
 
 @implementation UserTool
 
-static UserTool* _instance = nil;
+static UserTool* _ToolInstance = nil;
 
 +(instancetype) instance
 {
     static dispatch_once_t onceToken ;
     dispatch_once(&onceToken, ^{
-        _instance = [[super allocWithZone:NULL] init] ;
+        _ToolInstance = [[super allocWithZone:NULL] init] ;
     }) ;
-    return _instance ;
+    return _ToolInstance ;
 }
 
 +(id) allocWithZone:(struct _NSZone *)zone

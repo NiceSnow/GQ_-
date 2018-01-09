@@ -16,15 +16,15 @@
 
 
 
-static BaseHTTPRequest* _instance = nil;
+static BaseHTTPRequest* _RequestInstance = nil;
 
 +(instancetype) instance
 {
     static dispatch_once_t onceToken ;
     dispatch_once(&onceToken, ^{
-        _instance = [[super allocWithZone:NULL] init] ;
+        _RequestInstance = [[super allocWithZone:NULL] init] ;
     }) ;
-    return _instance ;
+    return _RequestInstance ;
 }
 
 +(id) allocWithZone:(struct _NSZone *)zone

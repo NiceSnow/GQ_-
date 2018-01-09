@@ -32,19 +32,19 @@ typedef enum {
 
 @implementation GQLogManager
 
-static GQLogManager* _instance = nil;
+static GQLogManager* _LogManagerInstance = nil;
 
 +(instancetype) instance
 {
     static dispatch_once_t onceToken ;
     dispatch_once(&onceToken, ^{
         if (LogService) {
-            _instance = [[super allocWithZone:NULL] init] ;
+            _LogManagerInstance = [[super allocWithZone:NULL] init] ;
         }else
-            _instance = nil;
+            _LogManagerInstance = nil;
     }) ;
     
-    return _instance ;
+    return _LogManagerInstance ;
 }
 
 +(id) allocWithZone:(struct _NSZone *)zone
@@ -60,7 +60,7 @@ static GQLogManager* _instance = nil;
 -(void)setImmediately:(BOOL)immediately{
     _immediately = immediately;
     if (!_immediately) {
-        _instance = nil;
+        _LogManagerInstance = nil;
     }
 }
 
@@ -109,7 +109,6 @@ static GQLogManager* _instance = nil;
 -(void)cleanDisk{
     LogModel* modle = [[LogModel alloc]init];
     modle.type = @"cleanDisk";
-    modle.time = [GQLogManager stringWithCurrentTime];
     [_timeline addObject:modle.toDictionary];
     [self WriteToFile];
 }
@@ -117,7 +116,6 @@ static GQLogManager* _instance = nil;
 -(void)clearMemory{
     LogModel* modle = [[LogModel alloc]init];
     modle.type = @"clearMemory";
-    modle.time = [GQLogManager stringWithCurrentTime];
     [_timeline addObject:modle.toDictionary];
     [self WriteToFile];
 }
@@ -165,7 +163,6 @@ static GQLogManager* _instance = nil;
 - (void)LogEnd;{
     LogModel* modle = [[LogModel alloc]init];
     modle.type = @"loginOut";
-    modle.time = [GQLogManager stringWithCurrentTime];
     [_timeline addObject:modle.toDictionary];
     [self WriteToFile];
     [self zipFile:_currentLogPath];
@@ -189,7 +186,6 @@ static GQLogManager* _instance = nil;
         [self endBackground];
         LogModel* modle = [[LogModel alloc]init];
         modle.type = @"becomeActive";
-        modle.time = [GQLogManager stringWithCurrentTime];
         [_timeline addObject:modle.toDictionary];
         [self checkLogFolder];
         [self checkLogZipFolder];
@@ -202,7 +198,6 @@ static GQLogManager* _instance = nil;
 //    每次进入后台都会保存并覆盖文件 保证数据的完整性
     LogModel* modle = [[LogModel alloc]init];
     modle.type = @"enterBackground";
-    modle.time = [GQLogManager stringWithCurrentTime];
     [_timeline addObject:modle.toDictionary];
     [self WriteToFile];
     [self zipFile:_currentLogPath];
@@ -217,7 +212,6 @@ static GQLogManager* _instance = nil;
 - (void)showVCWithName:(NSString*)name;{
     LogModel* modle = [[LogModel alloc]init];
     modle.type = @"enterActivity";
-    modle.time = [GQLogManager stringWithCurrentTime];
     modle.name = name;
     [_timeline addObject:modle.toDictionary];
 }
@@ -225,7 +219,6 @@ static GQLogManager* _instance = nil;
 - (void)dismissVCWithName:(NSString*)name;{
     LogModel* modle = [[LogModel alloc]init];
     modle.type = @"leaveActivity";
-    modle.time = [GQLogManager stringWithCurrentTime];
     modle.name = name;
     [_timeline addObject:modle.toDictionary];
 }
@@ -233,7 +226,6 @@ static GQLogManager* _instance = nil;
 - (void)ButtonPressWithName:(NSString*)name;{
     LogModel* modle = [[LogModel alloc]init];
     modle.type = @"click";
-    modle.time = [GQLogManager stringWithCurrentTime];
     modle.name = name;
     [_timeline addObject:modle.toDictionary];
 }
@@ -241,7 +233,6 @@ static GQLogManager* _instance = nil;
 - (void)SwitchChangedWithName:(NSString*)name Value:(BOOL)value;{
     LogModel* modle = [[LogModel alloc]init];
     modle.type = @"switchChange";
-    modle.time = [GQLogManager stringWithCurrentTime];
     modle.name = name;
     modle.isOn = [NSString stringWithFormat:@"%d",value];
     [_timeline addObject:modle.toDictionary];
@@ -250,9 +241,15 @@ static GQLogManager* _instance = nil;
 - (void)SliderValueChangeWithName:(NSString*)name Value:(CGFloat)value;{
     LogModel* modle = [[LogModel alloc]init];
     modle.type = @"sliderChange";
-    modle.time = [GQLogManager stringWithCurrentTime];
     modle.name = name;
     modle.sliderValue = [NSString stringWithFormat:@"%f",value];
+    [_timeline addObject:modle.toDictionary];
+}
+
+- (void)WebViewMessageWithName:(NSString*)name;{
+    LogModel* modle = [[LogModel alloc]init];
+    modle.type = @"H5";
+    modle.name = name;
     [_timeline addObject:modle.toDictionary];
 }
 
@@ -273,7 +270,6 @@ static GQLogManager* _instance = nil;
     if (_scrollName) {
         modle.name = _scrollName;
     }
-    modle.time = [GQLogManager stringWithCurrentTime];
     if (fabsf((float)_pointX - (float)x) > fabsf((float)_pointY - (float)y)) {
         if (_pointX>x) {
             modle.direction = @"left";
@@ -316,7 +312,6 @@ static GQLogManager* _instance = nil;
 - (void)SelectCellWithName:(NSString*)name IndexPath:(NSString*)indexPath;{
     LogModel* modle = [[LogModel alloc]init];
     modle.type = @"itemSelect";
-    modle.time = [GQLogManager stringWithCurrentTime];
     modle.name = name;
     modle.indexPath = indexPath;
     [_timeline addObject:modle.toDictionary];

@@ -202,5 +202,12 @@ otherButtonTitles:nil]; \
 #define oldVersion [[NSUserDefaults standardUserDefaults] objectForKey:versionKey]
 #define newVersion [NSBundle mainBundle].infoDictionary[versionKey]
 #define showNewFeature  ![oldVersion isEqualToString:newVersion]
+
+#define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
+
+#define iOS8 ([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0)
+
+#define iOS9 ([[UIDevice currentDevice].systemVersion doubleValue] >= 9.0)
+
 #endif /* MacroDefinition_h */
 

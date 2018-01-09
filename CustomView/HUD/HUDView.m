@@ -11,15 +11,15 @@
 
 @implementation HUDView
 
-static HUDView* _instance = nil;
+static HUDView* _HUDInstance = nil;
 
 +(instancetype) instance
 {
     static dispatch_once_t onceToken ;
     dispatch_once(&onceToken, ^{
-        _instance = [[super allocWithZone:NULL] init] ;
+        _HUDInstance = [[super allocWithZone:NULL] init] ;
     }) ;
-    return _instance ;
+    return _HUDInstance ;
 }
 
 +(id) allocWithZone:(struct _NSZone *)zone
@@ -33,18 +33,18 @@ static HUDView* _instance = nil;
 }
 
 +(void)showGIFHUD:(UIViewController*)VC;{
-    [VC.view addSubview:[HUDView Instance]];
-    [[HUDView Instance] mas_makeConstraints:^(MASConstraintMaker *make) {
+    [VC.view addSubview:[HUDView instance]];
+    [[HUDView instance] mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.bottom.offset(0);
     }];
 }
 
 +(void)hiddenHUD;{
-    [UIView transitionWithView:[HUDView Instance] duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-        [HUDView Instance].alpha = 0;
+    [UIView transitionWithView:[HUDView instance] duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        [HUDView instance].alpha = 0;
     } completion:^(BOOL finished) {
-        [[HUDView Instance] removeFromSuperview];
-        [HUDView Instance].alpha = 1;
+        [[HUDView instance] removeFromSuperview];
+        [HUDView instance].alpha = 1;
     }];
 }
 

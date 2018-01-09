@@ -33,6 +33,7 @@
 		6012689A1FD0F95600B70F60 /* HUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 601268981FD0F95600B70F60 /* HUDView.m */; };
 		601268A01FD14E1B00B70F60 /* UIFont+extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6012689F1FD14E1B00B70F60 /* UIFont+extension.m */; };
 		60147CD41FEBBDA20009FC9C /* GQ_LogBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60147CD31FEBBDA20009FC9C /* GQ_LogBaseTableView.m */; };
+		601E018D2004632E00A45476 /* GQTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 601E018C2004632E00A45476 /* GQTextField.m */; };
 		60378A981FD67420004F1D93 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 60378A971FD67420004F1D93 /* Request.m */; };
 		60378A9B1FD6743B004F1D93 /* myRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 60378A9A1FD6743B004F1D93 /* myRequest.m */; };
 		60378AA21FD685CD004F1D93 /* errorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 60378AA11FD685CD004F1D93 /* errorModel.m */; };
@@ -147,6 +148,9 @@
 		6012689F1FD14E1B00B70F60 /* UIFont+extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+extension.m"; sourceTree = "<group>"; };
 		60147CD21FEBBDA20009FC9C /* GQ_LogBaseTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQ_LogBaseTableView.h; sourceTree = "<group>"; };
 		60147CD31FEBBDA20009FC9C /* GQ_LogBaseTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQ_LogBaseTableView.m; sourceTree = "<group>"; };
+		601E018B2004632E00A45476 /* GQTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GQTextField.h; sourceTree = "<group>"; };
+		601E018C2004632E00A45476 /* GQTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GQTextField.m; sourceTree = "<group>"; };
+		601E018E2004653A00A45476 /* KeysDefinition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeysDefinition.h; sourceTree = "<group>"; };
 		60378A961FD67420004F1D93 /* Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
 		60378A971FD67420004F1D93 /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		60378A991FD6743B004F1D93 /* myRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = myRequest.h; sourceTree = "<group>"; };
@@ -309,6 +313,7 @@
 				6012685A1FCFE2F300B70F60 /* MacroDefinition.h */,
 				6012685B1FCFE49D00B70F60 /* ColorDefinition.h */,
 				6012685C1FCFE4B900B70F60 /* FontDefinition.h */,
+				601E018E2004653A00A45476 /* KeysDefinition.h */,
 			);
 			path = MacroDefinition;
 			sourceTree = "<group>";
@@ -388,6 +393,15 @@
 				60378AA71FD69043004F1D93 /* HTTPRequest.m */,
 			);
 			path = NetWork;
+			sourceTree = "<group>";
+		};
+		601E018A200462EB00A45476 /* Subclass */ = {
+			isa = PBXGroup;
+			children = (
+				601E018B2004632E00A45476 /* GQTextField.h */,
+				601E018C2004632E00A45476 /* GQTextField.m */,
+			);
+			path = Subclass;
 			sourceTree = "<group>";
 		};
 		60378A921FD6726F004F1D93 /* request */ = {
@@ -488,6 +502,7 @@
 				6012686C1FD019A400B70F60 /* Tools */,
 				601268591FCFE2F300B70F60 /* MacroDefinition */,
 				6012683D1FCFD6DE00B70F60 /* Catrgorys */,
+				601E018A200462EB00A45476 /* Subclass */,
 				601268391FCFD65800B70F60 /* NewFeature */,
 				601268201FCFA54000B70F60 /* BaseClass */,
 				60BB99871FCD5AC60065AE72 /* GQ_**** */,
@@ -568,10 +583,10 @@
 		60ED994E20030CE000E6934C /* webView */ = {
 			isa = PBXGroup;
 			children = (
-				60ED994F20030CE000E6934C /* ReadPDFViewController.h */,
 				60ED995020030CE000E6934C /* UrlWebViewController.h */,
-				60ED995120030CE000E6934C /* ReadPDFViewController.m */,
 				60ED995220030CE000E6934C /* UrlWebViewController.m */,
+				60ED994F20030CE000E6934C /* ReadPDFViewController.h */,
+				60ED995120030CE000E6934C /* ReadPDFViewController.m */,
 			);
 			path = webView;
 			sourceTree = "<group>";
@@ -799,6 +814,7 @@
 				609079781FEA18350043B561 /* NSURLSession+SynchronousRequest.m in Sources */,
 				60FBDD241FF483C600F156B1 /* Reachability.m in Sources */,
 				609079511FE369710043B561 /* TableViewCell.m in Sources */,
+				601E018D2004632E00A45476 /* GQTextField.m in Sources */,
 				609079321FDE2A450043B561 /* baseModel.m in Sources */,
 				601268581FCFE15B00B70F60 /* NSDate+extension.m in Sources */,
 				6012686B1FD018C000B70F60 /* MBProgressHUD+NHAdd.m in Sources */,

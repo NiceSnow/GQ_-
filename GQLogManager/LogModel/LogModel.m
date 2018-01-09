@@ -34,6 +34,10 @@
     return _netType;
 }
 
+-(NSString *)time{
+    return _time = [GQLogManager stringWithCurrentTime];
+}
+
 - (NSDictionary*)toDictionary{
     NSMutableDictionary* dic = [NSMutableDictionary new];
     NSArray* properNames = [LogModel allPropertyNames];

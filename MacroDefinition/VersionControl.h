@@ -16,7 +16,7 @@
  使用
  NSString* url = RequestURL(LoginURL);
  url1 --> 百度
- url  --> 冠群
+ url2 --> 冠群
  */
 #define URLKEY @"url1"
 

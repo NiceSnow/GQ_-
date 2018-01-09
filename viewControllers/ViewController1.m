@@ -16,19 +16,19 @@
 @implementation ViewController1
 - (IBAction)buttonPress:(id)sender {
     UrlWebViewController* webVC = [[UrlWebViewController alloc]init];
-    webVC.urlString = @"https://www.baidu.com";
-    CATransition* transition = [CATransition animation];
-    //执行时间长短
-    transition.duration = 0.5;
-    //动画的开始与结束的快慢
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    //各种动画效果
-    transition.type = kCATransitionMoveIn; //kCATransitionMoveIn, kCATransitionPush, kCATransitionReveal, kCATransitionFade
-    //动画方向
-    transition.subtype = kCATransitionFromTop; //kCATransitionFromLeft, kCATransitionFromRight, kCATransitionFromTop, kCATransitionFromBottom
-    //将动画添加在视图层上
-    [self.navigationController.view.layer addAnimation:transition forKey:nil];
-    [self.navigationController pushViewController:webVC animated:NO];
+    webVC.urlString = @"http://10.100.161.167/ajaxTimeout/js2native.html";
+//    CATransition* transition = [CATransition animation];
+//    //执行时间长短
+//    transition.duration = 0.5;
+//    //动画的开始与结束的快慢
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    //各种动画效果
+//    transition.type = kCATransitionMoveIn; //kCATransitionMoveIn, kCATransitionPush, kCATransitionReveal, kCATransitionFade
+//    //动画方向
+//    transition.subtype = kCATransitionFromTop; //kCATransitionFromLeft, kCATransitionFromRight, kCATransitionFromTop, kCATransitionFromBottom
+//    //将动画添加在视图层上
+//    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+    [self.navigationController pushViewController:webVC animated:YES];
 }
 - (IBAction)crash:(id)sender {
     NSArray* arr = @[@"123"];

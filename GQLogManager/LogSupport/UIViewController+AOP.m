@@ -26,13 +26,11 @@
 
 - (void)aop_viewWillAppear:(BOOL)animated
 {
-    NSLog(@"%@", NSStringFromClass([self class]));
 //    [[GQLogManager instance] showVCWithName:NSStringFromClass([self class])];
 //    [self aop_viewWillAppear:animated];
 }
 - (void)aop_viewDidDisAppear:(BOOL)animated
 {
-    NSLog(@"%@", NSStringFromClass([self class]));
 //    [[GQLogManager instance] dismissVCWithName:NSStringFromClass([self class])];
 //    [self aop_viewDidDisAppear:animated];
 }
@@ -96,7 +94,6 @@
         superView = view.nextResponder;
     }
     viewPath = [NSString stringWithFormat:@"%@&%@", viewPath, viewPathIndex];
-    NSLog(@"viewPath - %@", viewPath);
     
     return viewPath;
 }
@@ -238,7 +235,7 @@ static const char *UIControl_acceptEventTime = "UIControl_acceptEventTime";
 
 -(void)GQ_TouchCancel:(id)sender{
     if ([sender isKindOfClass:[UISlider class]]) {
-        NSLog(@"bingo");
+        
     }
 }
 
@@ -262,15 +259,16 @@ static const char *UIControl_acceptEventTime = "UIControl_acceptEventTime";
         if ([self isKindOfClass:[UISlider class]]){
             UISlider *sl = (UISlider*)self;
             NSString *viewPath = [self viewPath];
-            [[GQLogManager instance] SliderValueChangeWithName:viewPath Value:sl.value];
-            NSLog(@"%@",NSStringFromSelector(action));
+//            暂时不添加
+//            [[GQLogManager instance] SliderValueChangeWithName:viewPath Value:sl.value];
+            
         }
         return;
     }
     if (([self isKindOfClass:NSClassFromString(@"UITabBarButton")] && [NSStringFromSelector(action) isEqualToString:@"_sendAction:withEvent:"])) {
         NSString *viewPath = [self viewPath];
         [[GQLogManager instance] ButtonPressWithName:viewPath];
-        NSLog(@"UIControl-------%@-%@\n|||viewPath - %@|||", NSStringFromSelector(action), [target description], viewPath);
+        
     }
     else if ([self isKindOfClass:[UIButton class]]){
         NSString *viewPath = [self viewPath];
@@ -285,7 +283,7 @@ static const char *UIControl_acceptEventTime = "UIControl_acceptEventTime";
         UIButton* btn = (UIButton*)self;
         NSString *btnName = btn.currentTitle?[NSString stringWithFormat:@"%@_%@",NSStringFromClass([btn.viewController class]),btn.currentTitle]:[NSString stringWithFormat:@"%@_%@_%@",[btn.viewController class],btn.className, NSStringFromSelector(action)];
         [[GQLogManager instance] ButtonPressWithName:btnName];
-        NSLog(@"UIButton---%@----%@-%@|||viewPath - %@|||", btnName, NSStringFromSelector(action), [target description], viewPath);
+        
     }
     else if ([self isKindOfClass:[UITextField class]] || [self isKindOfClass:[UITextView class]]) {
 //        UITextField *tf = (UITextField *)self;
@@ -294,8 +292,8 @@ static const char *UIControl_acceptEventTime = "UIControl_acceptEventTime";
     else if ([self isKindOfClass:[UISwitch class]]) {
         UISwitch *sw = (UISwitch *)self;
         NSString *viewPath = [self viewPath];
-        [[GQLogManager instance] SwitchChangedWithName:viewPath Value:sw.isOn];
-        NSLog(@"UISwitch---%@----%@|||viewPath - %@|||", NSStringFromSelector(action), [NSNumber numberWithBool:sw.isOn], viewPath);
+//        暂时不添加
+//        [[GQLogManager instance] SwitchChangedWithName:viewPath Value:sw.isOn];
     }
     [self aop_sendAction:action to:target forEvent:event];
 }
@@ -393,14 +391,12 @@ static const char *UIControl_acceptEventTime = "UIControl_acceptEventTime";
 
 - (void)aop_collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath  {
     
-    NSLog(@"UICollectionView-------%@", [collectionView description]);
     NSArray* cellArray = (NSArray*)[collectionView visibleCells];
     UICollectionViewCell* cell;
     if ([cellArray count]>0) {
         cell = cellArray[0];
     }else return;
     
-    NSLog(@"%@",NSStringFromClass([cell class]));
     NSString *cellId = [NSString stringWithFormat:@"%@_%@",NSStringFromClass([cell.viewController class]),NSStringFromClass([cell class])];
     [[GQLogManager instance] SelectCellWithName:cellId IndexPath:[NSString stringWithFormat:@"%ld_%ld",((NSIndexPath *)indexPath).section,((NSIndexPath *)indexPath).row]];
     [self aop_collectionView:collectionView didSelectItemAtIndexPath:indexPath];
@@ -440,7 +436,7 @@ static const char *UIControl_acceptEventTime = "UIControl_acceptEventTime";
 }
 
 - (void)aop_tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"UITableView-------%@", [tableView description]);
+    
     NSArray* cellArray = (NSArray*)[tableView visibleCells];
     UICollectionViewCell* cell;
     if ([cellArray count]>0) {
