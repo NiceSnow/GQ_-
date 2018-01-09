@@ -27,6 +27,7 @@
     //
     keyboardManager.shouldResignOnTouchOutside = YES; // 控制点击背景是否收起键盘
     
+    
     [GQLogManager instance].immediately = YES;
     [GQLogManager instance].userID = @"888";
     [GQLogManager instance].userName = @"MDD";

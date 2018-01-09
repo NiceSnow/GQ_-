@@ -15,4 +15,14 @@
 #define LogService NO
 #endif
 
+#define URLAddress \
+@{\
+@"url1":@"www.baidu.com",\
+@"url2":@"www.gq.com"\
+}
+
+#define RequestURL(url) [NSString stringWithFormat:@"%@/%@",URLAddress[URLKEY],url]
+
+#define LoginURL @"GQ/Login"
+
 #endif /* interface_h */
