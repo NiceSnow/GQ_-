@@ -56,7 +56,8 @@ static BaseHTTPRequest* _RequestInstance = nil;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         success(task, responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [[GQLogManager instance] RequestErrorWithUrl:url Parameter:parameter Message:@"服务器访问错误" Error:error];
+        //        暂时先不加
+//        [[GQLogManager instance] RequestErrorWithUrl:url Parameter:parameter Message:@"服务器访问错误" Error:error];
         failure(task,error);
     }];
 }
@@ -66,7 +67,8 @@ static BaseHTTPRequest* _RequestInstance = nil;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         success(task, responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [[GQLogManager instance] RequestErrorWithUrl:url Parameter:parameter Message:@"服务器访问错误" Error:error];
+//        暂时先不加
+//        [[GQLogManager instance] RequestErrorWithUrl:url Parameter:parameter Message:@"服务器访问错误" Error:error];
         failure(task,error);
     }];
 }
@@ -81,8 +83,9 @@ static BaseHTTPRequest* _RequestInstance = nil;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         success(task, responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [[GQLogManager instance] RequestErrorWithUrl:url Parameter:params Message:@"服务器访问错误" Error:error];
-        failure(task,error);
+        //        暂时先不加
+//        [[GQLogManager instance] RequestErrorWithUrl:url Parameter:params Message:@"服务器访问错误" Error:error];
+//        failure(task,error);
 
     }];
 }
@@ -129,7 +132,8 @@ static BaseHTTPRequest* _RequestInstance = nil;
         return [path URLByAppendingPathComponent:fileName];
         
     } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-        [[GQLogManager instance] RequestErrorWithUrl:url Parameter:parameter Message:@"服务器访问错误" Error:error];
+        //        暂时先不加
+//        [[GQLogManager instance] RequestErrorWithUrl:url Parameter:parameter Message:@"服务器访问错误" Error:error];
         NSLog(@"File downloaded to: %@", filePath);
     }];
     

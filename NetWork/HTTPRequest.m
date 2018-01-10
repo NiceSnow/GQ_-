@@ -66,13 +66,8 @@
         {
             if (_dataType&&_data&&_dataName) {
                 [[BaseHTTPRequest instance] sendData:_data fileName:_dataName fileType:_dataType URL:_urlString parameters:_parameter succeed:^(NSURLSessionDataTask *task, id responseObject) {
-                    [self cacheData:responseObject];
                     succeed(responseObject);
                 } failed:^(NSURLSessionDataTask *task, NSError *error) {
-                    id responseObject = [self getData];
-                    if (responseObject) {
-                        succeed(responseObject);
-                    }
                     failed(error);
                 }];
             }else {

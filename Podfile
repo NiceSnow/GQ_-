@@ -14,4 +14,5 @@ target 'GQ_****' do
   pod 'Masonry'
   pod 'YYKit'
   pod 'SSZipArchive'
+  pod 'LHPerformanceStatusBar'
 end

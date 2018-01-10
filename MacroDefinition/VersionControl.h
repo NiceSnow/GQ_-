@@ -9,15 +9,18 @@
 #ifndef VersionControl_h
 #define VersionControl_h
 
-//注释后不上传日志
-#define Start_LogService
-
 /**
  使用
  NSString* url = RequestURL(LoginURL);
  url1 --> 百度
  url2 --> 冠群
+ url3 --> 冠群
  */
-#define URLKEY @"url1"
+#define URLKEY @"url3"
+
+//注释后不上传日志
+#define Start_LogService
+//状态栏展示fps等信息 注释后不显示
+#define Show_FPS
 
 #endif /* VersionControl_h */

@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "LHPerformanceMonitorService.h"
 @class ViewController1;
 @class UrlWebViewController;
 
@@ -42,6 +43,12 @@
         [self.navigationController setNavigationBarHidden:YES animated:YES];
     }else{
         [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
+    if (FPS) {
+        [LHPerformanceMonitorService run];
+        [LHPerformanceMonitorService setTextColor:[UIColor blackColor] forState:LHPerformanceStateGood];
+        [LHPerformanceMonitorService setTextColor:[UIColor yellowColor] forState:LHPerformanceStateWarning];
+        [LHPerformanceMonitorService setTextColor:[UIColor redColor] forState:LHPerformanceStateBad];
     }
 }
 

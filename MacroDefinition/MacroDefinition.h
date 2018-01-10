@@ -62,6 +62,8 @@ dispatch_async(dispatch_get_main_queue(), block);\
 
 #define GCDASYNCGlobal( block ) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
 
+#define iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+
 //状态栏高度
 #define statusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
 //导航栏高度
@@ -112,7 +114,7 @@ otherButtonTitles:nil]; \
  */
 
 #ifdef DEBUG
-#define chackMemory [MBProgressHUD showTitleToView:[UIApplication sharedApplication].keyWindow contentStyle:NHHUDContentBlackStyle title:@"dealloc" afterDelay:2];;
+#define chackMemory [MBProgressHUD showTitleToView:[UIApplication sharedApplication].keyWindow contentStyle:NHHUDContentBlackStyle title:@"dealloc" afterDelay:1];;
 #else
 #define chackMemory
 #endif

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'F576E18C1427AA86754B9F618C5A0165'
-               BlueprintName = 'SAMKeychain'
+               BlueprintIdentifier = 'DAFF6B996A95ECD56C00712710A134CC'
+               BlueprintName = 'LHPerformanceStatusBar'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SAMKeychain.framework'>
+               BuildableName = 'LHPerformanceStatusBar.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

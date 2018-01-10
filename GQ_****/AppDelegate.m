@@ -61,7 +61,7 @@
 //    delegate回调
     myRequest* request = [[myRequest alloc]init];
     request.delegate = self;
-    [request DelegateRequest:@"https://tst-cashloan-fe.gqichina.net/user/login" parameters:para RequestType:@"firstRequest"];
+    [request DelegateRequest:@"https://tst-cashloan-fe.gqichina.net/user/login" parameters:para RequestType:LoginURL];
     
     myRequest* request2 = [[myRequest alloc]init];
     request2.delegate = self;
@@ -72,7 +72,7 @@
 }
 
 -(void)onSuccessWithData:(id)data RequestType:(NSString *)type{
-    if ([type isEqualToString:@"firstRequest"]) {
+    if ([type isEqualToString:LoginURL]) {
         NSLog(@"第一个回调成功");
     }
     if ([type isEqualToString:@"secondRequest"]) {

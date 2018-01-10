@@ -15,6 +15,12 @@
 #define LogService NO
 #endif
 
+#ifdef Show_FPS
+#define FPS YES
+#else
+#define FPS NO
+#endif
+
 #define URLAddress \
 @{\
 @"url1":@"www.baidu.com",\
